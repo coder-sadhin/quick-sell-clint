@@ -5,6 +5,7 @@ import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import { FaGoogle } from 'react-icons/fa';
+import { setAuthToken } from '../../../AllApi/AuthToken/AuthToken';
 
 const Login = () => {
     const [userEmail, setUserEmail] = useState('')
@@ -20,10 +21,7 @@ const Login = () => {
 
         userLogin(email, password)
             .then(result => {
-                toast.success('Login Successful.....!')
-                // Get Token
-
-                navigate(from, { replace: true })
+                checkUserType(result.user.email)
             })
             .catch(err => {
                 toast.error(err.message)
@@ -32,10 +30,34 @@ const Login = () => {
             })
     }
 
+    const checkUserType = (email) => {
+        const url = `http://localhost:5000/checkuser?email=${email}`;
+        // console.log(url)
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                const userData = {
+                    email, userType: data
+                }
+                setAuthToken(userData);
+                setLoading(false)
+                toast.success('Login Successful.....!')
+                navigate(from, { replace: true })
+            })
+
+
+    }
+
     const handleGoogleSignin = () => {
         logInWithGoogle()
             .then(result => {
-                console.log(result.user)
+                // console.log(result.user)
+                const userData = {
+                    email: result.user.email, userType: 'user'
+                }
+                setAuthToken(userData);
+                toast.success('Login Successful.....!')
+                setLoading(false)
                 navigate(from, { replace: true })
             })
     }
