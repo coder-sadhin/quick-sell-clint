@@ -9,7 +9,7 @@ const Brands = () => {
             .then(res => res.json())
             .then(data => setBrands(data))
     }, [])
-    console.log(brands)
+    // console.log(brands)
     return (
         <div>
             <h3 className="text-3xl text-center font-bold mt-12 mb-6">ALL YOUR FAVORITE BRANDS</h3>

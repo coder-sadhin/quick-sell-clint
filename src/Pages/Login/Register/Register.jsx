@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import toast from 'react-hot-toast';
 import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
@@ -7,6 +7,8 @@ import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import { FaGoogle } from 'react-icons/fa';
 import userImageUploadApi from '../../../AllApi/UserImageApi';
+import { setAuthToken } from '../../../AllApi/AuthToken/AuthToken';
+import addUser from '../../../AllApi/newUser/newUser';
 
 
 
@@ -14,13 +16,16 @@ const Register = () => {
     const { createUserWithEmail, updateUserProfile, loading, setLoading, logInWithGoogle } = useContext(AuthContext);
 
     const navigate = useNavigate()
-
+    const [userRoll, setUserRoll] = useState('user')
+    console.log(userRoll)
     const handleSubmit = event => {
         event.preventDefault()
-        const name = event.target.name.value
+        const name = event.target.name.value;
+        const roll = event.target.userRoll.value;
+        const email = event.target.email.value;
+        const password = event.target.password.value;
 
-        const email = event.target.email.value
-        const password = event.target.password.value
+        setUserRoll(roll)
 
         // Image Upload
         const image = event.target.image.files[0]
@@ -46,9 +51,7 @@ const Register = () => {
                         // update user profile 
                         updateUserProfile(userInfo)
                             .then(() => {
-                                toast.success('Congratulation! Your Successfully Create an Account.');
-                                setLoading(false)
-                                navigate('/')
+                                setUserToDB(name, email, imageData.data.display_url, userRoll);
                             })
                             .catch(err => {
                                 console.error(err)
@@ -68,11 +71,31 @@ const Register = () => {
     const singInWithGoogle = () => {
         logInWithGoogle()
             .then(result => {
-                toast.success('Congratulation! Your Successfully Login.');
-                setLoading(false)
-                navigate('/')
+                const user = result.user;
+                const name = user.displayName;
+                const email = user.email;
+                const photoURL = user.photoURL;
+                const userRoll = 'user';
+                setUserToDB(name, email, photoURL, userRoll);
             })
     }
+
+
+    const setUserToDB = (name, email, photoURL, userRoll) => {
+        const user = {
+            name, email, photoURL, userType: userRoll
+        };
+        const userData = {
+            email, userType: userRoll
+        }
+        addUser(user);
+
+        setAuthToken(userData);
+        setLoading(false)
+        navigate('/')
+        toast.success('Congratulation! Your Successfully Create an Account.');
+    }
+
     return (
         <div className='flex justify-center items-center py-5'>
             <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-200 text-gray-900'>
@@ -80,36 +103,20 @@ const Register = () => {
                     <h1 className='text-4xl font-bold'>Please Register Here</h1>
                     <p className='text-sm text-gray-400'>Create a new account</p>
                 </div>
-                <form
-                    onSubmit={handleSubmit}
-                    noValidate=''
-                    action=''
-                    className='space-y-6 ng-untouched ng-pristine ng-valid'
-                >
+                <form onSubmit={handleSubmit} className='space-y-6 ng-untouched ng-pristine ng-valid' >
                     <div className='space-y-4'>
                         <div>
                             <label htmlFor='email' className='block mb-2 text-sm'>
                                 Name
                             </label>
-                            <input
-                                type='text'
-                                name='name'
-                                id='name'
-                                placeholder='Enter Your Name Here'
-                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900'
-                                data-temp-mail-org='0'
+                            <input type='text' name='name' id='name' placeholder='Enter Your Name Here' className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900'
                             />
                         </div>
                         <div>
                             <label htmlFor='image' className='block mb-2 text-sm'>
                                 Select Image:
                             </label>
-                            <input
-                                required
-                                type='file'
-                                id='image'
-                                name='image'
-                                accept='image/*'
+                            <input required type='file' id='image' name='image' accept='image/*'
                             />
                         </div>
                         <div>
@@ -130,6 +137,21 @@ const Register = () => {
                             <input type='password' name='password' id='password' required placeholder='*******'
                                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900'
                             />
+                        </div>
+                        <div>
+                            <div className='flex justify-between'>
+                                <label htmlFor='password' className='text-sm mb-2'>
+                                    Account For
+                                </label>
+                            </div>
+                            <div>
+                                <select defaultValue={''} name='userRoll' className="select w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900">
+                                    <option value={''} disabled selected>What type user you are?</option>
+                                    <option value={'user'}>User</option>
+                                    <option value={'seller'}>Seller</option>
+                                </select>
+                            </div>
+
                         </div>
                     </div>
 

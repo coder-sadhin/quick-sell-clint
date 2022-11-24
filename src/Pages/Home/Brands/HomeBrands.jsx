@@ -10,7 +10,7 @@ const Brands = () => {
             .then(res => res.json())
             .then(data => setBrands(data))
     }, [])
-    console.log(brands)
+    // console.log(brands)
 
 
     return (
