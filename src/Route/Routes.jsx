@@ -1,4 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddCategory from "../DashBoard/AddCatagory/AddCatagory";
+import AddProduct from "../DashBoard/AddProduct/AddProduct";
+import AllUsers from "../DashBoard/Admin/AllUser/AllUsers";
+import DashBoard from "../DashBoard/DashBoard/DashBoard";
+import ReportedItem from "../DashBoard/ReportedItem/ReportedItem";
+import DashBoardLayout from "../Layout/DashBoardLayout";
 import MainLayout from '../Layout/MainLayout';
 import About from "../Pages/About/About";
 import Blogs from "../Pages/Blogs/Blogs";
@@ -40,6 +46,32 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register />
+            }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <DashBoardLayout />,
+        children: [
+            {
+                path: '/dashboard',
+                element: <DashBoard />
+            },
+            {
+                path: '/dashboard/allUsers',
+                element: <AllUsers />
+            },
+            {
+                path: '/dashboard/addCategory',
+                element: <AddCategory />
+            },
+            {
+                path: '/dashboard/addProduct',
+                element: <AddProduct />
+            },
+            {
+                path: '/dashboard/reportItem',
+                element: <ReportedItem />
             }
         ]
     }
