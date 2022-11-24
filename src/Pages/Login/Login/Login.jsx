@@ -54,7 +54,7 @@ const Login = () => {
     }
 
     return (
-        <div className='flex justify-center items-center py-8'>
+        <div className='flex justify-center items-center py-5'>
             <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-200 text-gray-900'>
                 <div className='mb-8 text-center'>
                     <h1 className='text-4xl font-bold'>Please Sign In</h1>
@@ -116,7 +116,7 @@ const Login = () => {
                     <PrimaryButton onClick={handleGoogleSignin} type='submit'
                         classes='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
                     >
-                        {loading ? <SmallSpinner /> : <FaGoogle />}
+                        {loading ? <SmallSpinner /> : <div className='flex items-center justify-around'>Continue With <FaGoogle /></div>}
                     </PrimaryButton>
                 </div>
                 <p className='px-6 text-sm text-center text-gray-400'>
