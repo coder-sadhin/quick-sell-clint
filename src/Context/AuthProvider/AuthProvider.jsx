@@ -11,24 +11,29 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const createUser = (email, pass) => {
+    const createUserWithEmail = (email, pass) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, pass)
     }
 
-    const upDateUser = (userInfo) => {
+    const updateUserProfile = (userInfo) => {
         setLoading(true)
         return updateProfile(auth.currentUser, userInfo)
     }
 
-    const login = (email, pass) => {
+    const userLogin = (email, pass) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, pass)
     }
 
-    const signInWithGoogle = () => {
+    const logInWithGoogle = () => {
         setLoading(true)
         return signInWithPopup(auth, provider);
+    }
+
+    const resetPassword = (userEmail) => {
+        setLoading(true)
+
     }
 
     useEffect(() => {
@@ -42,18 +47,19 @@ const AuthProvider = ({ children }) => {
 
 
 
-    const LogOut = () => {
+    const userSignOut = () => {
         return signOut(auth);
     }
 
     const authInfo = {
-        createUser,
-        login,
+        createUserWithEmail,
+        userLogin,
         user,
-        LogOut,
-        upDateUser,
+        userSignOut,
+        updateUserProfile,
         loading,
-        signInWithGoogle,
+        logInWithGoogle,
+        resetPassword
     }
 
     return (

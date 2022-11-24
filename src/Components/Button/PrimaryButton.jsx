@@ -4,7 +4,7 @@ const PrimaryButton = ({ children, classes, handler }) => {
     return (
         <button
             onClick={handler}
-            className={`hover:text-gray-100 bg-gradient-to-r from-emerald-500 to-lime-500 btn text-white ${classes}`}
+            className={`hover:text-gray-100 bg-gradient-to-r from-emerald-400 to-lime-400  text-white ${classes}`}
         >
             {children}
         </button>
