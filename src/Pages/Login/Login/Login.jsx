@@ -27,7 +27,7 @@ const Login = () => {
             })
             .catch(err => {
                 toast.error(err.message)
-                console.log(err)
+                console.error(err)
                 setLoading(false)
             })
     }
@@ -45,6 +45,7 @@ const Login = () => {
         resetPassword(userEmail)
             .then(() => {
                 toast.success('Please check your email for reset link')
+                setLoading(false)
             })
             .catch(err => {
                 toast.error(err.message)
@@ -113,7 +114,7 @@ const Login = () => {
                     </p>
                 </div>
                 <div className='flex justify-center'>
-                    <PrimaryButton onClick={handleGoogleSignin} type='submit'
+                    <PrimaryButton handler={handleGoogleSignin} type='submit'
                         classes='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
                     >
                         {loading ? <SmallSpinner /> : <div className='flex items-center justify-around'>Continue With <FaGoogle /></div>}

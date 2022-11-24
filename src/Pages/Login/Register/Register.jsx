@@ -65,7 +65,14 @@ const Register = () => {
             })
     }
 
-
+    const singInWithGoogle = () => {
+        logInWithGoogle()
+            .then(result => {
+                toast.success('Congratulation! Your Successfully Login.');
+                setLoading(false)
+                navigate('/')
+            })
+    }
     return (
         <div className='flex justify-center items-center py-5'>
             <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-200 text-gray-900'>
@@ -141,7 +148,7 @@ const Register = () => {
                     </p>
                 </div>
                 <div className='flex justify-center'>
-                    <PrimaryButton type='submit'
+                    <PrimaryButton type='submit' handler={singInWithGoogle}
                         classes='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
                     >
                         {loading ? <SmallSpinner /> : <div className='flex items-center justify-around'>Continue With <FaGoogle /></div>}

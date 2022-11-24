@@ -29,7 +29,9 @@ const Brands = () => {
                     }
                 </div>
                 <div className='flex justify-center my-5'>
-                    <Link to={'/brands'}><PrimaryButton>See All Brands</PrimaryButton></Link>
+                    <Link to={'/brands'}><PrimaryButton
+                        classes='btn'
+                    >See All Brands</PrimaryButton></Link>
                 </div>
             </div>
         </div>
