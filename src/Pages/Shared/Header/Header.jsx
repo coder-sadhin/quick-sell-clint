@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
-const Header = ({ user }) => {
+const Header = () => {
+
+    const { user, userSignOut } = useContext(AuthContext)
+
+    const handleToSignOut = () => {
+        userSignOut()
+        localStorage.removeItem('quicksellToken')
+    }
+
 
     const menuItems = <>
         <li className='font-semibold'><Link to={'/'}>Home</Link></li>
@@ -12,12 +21,14 @@ const Header = ({ user }) => {
             user?.uid ?
                 <>
                     <li className='font-semibold'><Link to={'/dashboard'}>Dashboard</Link></li>
-                    <li className='font-semibold'><button>SignOut</button></li>
+                    <li className='font-semibold'><button onClick={handleToSignOut}>SignOut</button></li>
                 </>
                 :
                 <li className='font-semibold'><Link to={'/login'}>Login</Link></li>
         }
     </>
+
+
     return (
         <div className="navbar bg-blue-100 shadow-amber-50 shadow-xl">
             <div className="navbar-start">
