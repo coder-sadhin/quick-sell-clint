@@ -5,8 +5,9 @@ const Header = ({ user }) => {
 
     const menuItems = <>
         <li className='font-semibold'><Link to={'/'}>Home</Link></li>
-        <li className='font-semibold'><Link to={'/appointment'}>Appointment</Link></li>
+        <li className='font-semibold'><Link to={'/brands'}>Brands</Link></li>
         <li className='font-semibold'><Link to={'/about'}>About</Link></li>
+        <li className='font-semibold'><Link to={'/blogs'}>Blogs</Link></li>
         {
             user?.uid ?
                 <>
@@ -18,7 +19,7 @@ const Header = ({ user }) => {
         }
     </>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-blue-100 shadow-amber-50 shadow-xl">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -28,7 +29,7 @@ const Header = ({ user }) => {
                         {menuItems}
                     </ul>
                 </div>
-                <Link to={'/'} className="btn btn-ghost normal-case text-xl">Doctors Portal</Link>
+                <Link to={'/'} className="btn btn-ghost font-bold text-2xl"><span className='text-red-500'>QUICK</span>SELL</Link>
             </div>
             <div className="navbar-end hidden lg:flex ">
                 <ul className="menu menu-horizontal p-0">

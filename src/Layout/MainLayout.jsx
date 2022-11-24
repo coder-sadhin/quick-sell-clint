@@ -5,7 +5,7 @@ import Header from '../Pages/Shared/Header/Header';
 
 const MainLayout = () => {
     return (
-        <div>
+        <div className='w-11/12 mx-auto'>
             <Header />
             <Outlet />
             <Footer />
