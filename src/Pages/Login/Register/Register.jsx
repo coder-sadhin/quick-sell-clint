@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import toast from 'react-hot-toast';
@@ -154,7 +154,6 @@ const Register = () => {
 
                         </div>
                     </div>
-
                     <div>
                         <PrimaryButton
                             type='submit'

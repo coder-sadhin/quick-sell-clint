@@ -2,9 +2,20 @@ import React, { useContext } from 'react';
 import Header from '../Pages/Shared/Header/Header';
 import { Outlet, Link } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthProvider/AuthProvider';
+import useUserType from '../Hooks/useUserType';
+import Spinner from '../Components/Spinner/Spinner';
 
-const DashBoardLayout = ({ isAdmin }) => {
-    const { user } = useContext(AuthContext);
+const DashBoardLayout = () => {
+    const { user, userSignOut } = useContext(AuthContext);
+    // console.log(user)
+    const [isAdmin, isSeller, userLoading] = useUserType(user?.email)
+    console.log('this is seller', isSeller)
+    console.log('this is admin', isAdmin)
+    console.log('this is userLoading', userLoading)
+
+    if (userLoading) {
+        return <Spinner />
+    }
     return (
         <div>
             <Header />
@@ -17,10 +28,21 @@ const DashBoardLayout = ({ isAdmin }) => {
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 text-base-content bg-slate-500">
                         <li><Link to={'/dashboard'}>My Product</Link></li>
-                        <li><Link to={'/dashboard/allUsers'}>All Users</Link></li>
-                        <li><Link to={'/dashboard/addCategory'}>Add A Category</Link></li>
-                        <li><Link to={'/dashboard/addProduct'}>Add Product</Link></li>
-                        <li><Link to={'/dashboard/reportItem'}>Reported Item</Link></li>
+                        {
+                            isSeller && <>
+                                <li><Link to={'/dashboard/addProduct'}>Add Product</Link></li>
+                                <li><Link to={'/dashboard/myBuyer'}>My Buyers</Link></li>
+                            </>
+                        }
+                        {
+                            isAdmin && <>
+                                <li><Link to={'/dashboard/allUsers'}>All Users</Link></li>
+                                <li><Link to={'/dashboard/allSeller'}>All Seller</Link></li>
+                                <li><Link to={'/dashboard/addCategory'}>Add A Category</Link></li>
+                                <li><Link to={'/dashboard/reportItem'}>Reported Item</Link></li>
+                            </>
+                        }
+                        <li><button onClick={userSignOut}>Sign Out</button></li>
                     </ul>
                 </div>
             </div>

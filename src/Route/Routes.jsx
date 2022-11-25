@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import AddCategory from "../DashBoard/AddCatagory/AddCatagory";
-import AddProduct from "../DashBoard/AddProduct/AddProduct";
+import AddCategory from "../DashBoard/Admin/AddCatagory/AddCatagory";
+import AllSeller from "../DashBoard/Admin/AllSeller/AllSeller";
 import AllUsers from "../DashBoard/Admin/AllUser/AllUsers";
 import DashBoard from "../DashBoard/DashBoard/DashBoard";
-import ReportedItem from "../DashBoard/ReportedItem/ReportedItem";
+import ReportedItem from "../DashBoard/Admin/ReportedItem/ReportedItem";
 import DashBoardLayout from "../Layout/DashBoardLayout";
 import MainLayout from '../Layout/MainLayout';
 import About from "../Pages/About/About";
@@ -13,6 +13,10 @@ import Brands from "../Pages/Brands/Brands/Brands";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import SellerRoute from "./SellerRoute/SellerRoute";
+import MyBuyer from "../DashBoard/Seller/MyBuyer/MyBuyer";
+import AddProduct from "../DashBoard/Seller/AddProduct/AddProduct";
 
 const router = createBrowserRouter([
     {
@@ -33,7 +37,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/brands/:brandName',
-                element: <Brand />
+                element: <PrivateRoute><Brand /></PrivateRoute>
             },
             {
                 path: '/about',
@@ -51,28 +55,37 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashBoardLayout />,
+        element: <PrivateRoute><DashBoardLayout /></PrivateRoute>,
         children: [
             {
                 path: '/dashboard',
-                element: <DashBoard />
+                element: <PrivateRoute><DashBoard /></PrivateRoute>
             },
             {
                 path: '/dashboard/allUsers',
                 element: <AllUsers />
             },
             {
+                path: '/dashboard/allSeller',
+                element: <AllSeller />
+            },
+            {
                 path: '/dashboard/addCategory',
                 element: <AddCategory />
             },
             {
-                path: '/dashboard/addProduct',
-                element: <AddProduct />
-            },
-            {
                 path: '/dashboard/reportItem',
                 element: <ReportedItem />
+            },
+            {
+                path: '/dashboard/addProduct',
+                element: <SellerRoute><AddProduct /></SellerRoute>
+            },
+            {
+                path: '/dashboard/myBuyer',
+                element: <MyBuyer />
             }
+
         ]
     }
 ])

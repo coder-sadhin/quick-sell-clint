@@ -3,14 +3,16 @@ import { useForm } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import PrimaryButton from '../../Components/Button/PrimaryButton';
-import SmallSpinner from '../../Components/Spinner/SmallSpinner';
-import userImageUploadApi from '../../AllApi/UserImageApi';
 import axios from "axios";
-import Spinner from '../../Components/Spinner/Spinner';
+import Spinner from '../../../Components/Spinner/Spinner';
+import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
+import PrimaryButton from '../../../Components/Button/PrimaryButton';
+import userImageUploadApi from '../../../AllApi/UserImageApi';
 
-const AddProduct = ({ loading }) => {
+
+const AddProduct = () => {
     const [brands, setBrands] = useState([]);
+    const [loading, setLoading] = useState(false)
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
@@ -40,6 +42,7 @@ const AddProduct = ({ loading }) => {
 
 
     const handleAddProduct = (data) => {
+        setLoading(true)
         const name = data.name;
         const price = data.price;
         const condition = data.condition;
@@ -94,6 +97,7 @@ const AddProduct = ({ loading }) => {
                     if (response.data.acknowledged) {
                         toast.success('Your Mobile added successfully');
                         navigate('/dashboard')
+                        setLoading(false)
                     }
                 });
 
