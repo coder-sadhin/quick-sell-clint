@@ -1,8 +1,6 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import Spinner from '../../../Components/Spinner/Spinner';
-import SingleProduct from './SingleProduct';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
 
 const MyProduct = () => {

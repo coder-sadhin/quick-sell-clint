@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddCategory from "../DashBoard/Admin/AddCatagory/AddCatagory";
-import AllSeller from "../DashBoard/Admin/AllSeller/AllSeller";
 import AllUsers from "../DashBoard/Admin/AllUser/AllUsers";
 import DashBoard from "../DashBoard/DashBoard/DashBoard";
 import ReportedItem from "../DashBoard/Admin/ReportedItem/ReportedItem";
@@ -19,6 +18,7 @@ import MyBuyer from "../DashBoard/Seller/MyBuyer/MyBuyer";
 import AddProduct from "../DashBoard/Seller/AddProduct/AddProduct";
 import MyProduct from "../DashBoard/Seller/MyProduct/MyProduct";
 import AllProducts from "../DashBoard/Admin/AllProducts/AllProducts";
+import DetailsPage from "../Pages/Brands/Brand/DetailsPage";
 
 const router = createBrowserRouter([
     {
@@ -39,7 +39,13 @@ const router = createBrowserRouter([
             },
             {
                 path: '/brands/:brandName',
+                loader: ({ params }) => fetch(`http://localhost:5000/brand/${params.brandName}`),
                 element: <PrivateRoute><Brand /></PrivateRoute>
+            },
+            {
+                path: '/details/:id',
+                loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`),
+                element: <DetailsPage />
             },
             {
                 path: '/about',
@@ -66,10 +72,6 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allUsers',
                 element: <AllUsers />
-            },
-            {
-                path: '/dashboard/allSeller',
-                element: <AllSeller />
             },
             {
                 path: '/dashboard/addCategory',

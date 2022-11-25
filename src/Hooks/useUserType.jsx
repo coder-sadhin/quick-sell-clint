@@ -4,6 +4,7 @@ const useUserType = email => {
 
     const [isAdmin, setIsAdmin] = useState(false);
     const [isSeller, setIsSeller] = useState(false);
+    const [isUser, setIsUser] = useState(false);
     const [userLoading, setUserLoading] = useState(true);
     useEffect(() => {
         if (email) {
@@ -18,10 +19,14 @@ const useUserType = email => {
                         setIsSeller(true)
                         setUserLoading(false)
                     }
+                    else {
+                        setIsUser(true)
+                        setUserLoading(false)
+                    }
                 });
         }
     }, [email])
-    return [isAdmin, isSeller, userLoading];
+    return [isAdmin, isSeller, isUser, userLoading];
 }
 
 export default useUserType;
