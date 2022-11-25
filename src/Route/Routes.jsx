@@ -19,6 +19,7 @@ import AddProduct from "../DashBoard/Seller/AddProduct/AddProduct";
 import MyProduct from "../DashBoard/Seller/MyProduct/MyProduct";
 import AllProducts from "../DashBoard/Admin/AllProducts/AllProducts";
 import DetailsPage from "../Pages/Brands/Brand/DetailsPage";
+import ProductBooking from "../Pages/Brands/Booking/ProductBooking";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +47,12 @@ const router = createBrowserRouter([
                 path: '/details/:id',
                 loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`),
                 element: <DetailsPage />
+            },
+            {
+                path: '/booking/:id',
+                loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`),
+                element: <ProductBooking />
+
             },
             {
                 path: '/about',
