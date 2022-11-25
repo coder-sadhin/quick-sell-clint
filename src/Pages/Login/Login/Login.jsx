@@ -19,7 +19,7 @@ const Login = () => {
         const email = event.target.email.value
         const password = event.target.password.value
 
-        console.log(email, password)
+        // console.log(email, password)
 
         userLogin(email, password)
             .then(result => {
@@ -34,13 +34,15 @@ const Login = () => {
     }
 
     const checkUserType = (email) => {
-        fetch(`http://localhost:5000/checkuser?email=${email}`)
+        const url = `http://localhost:5000/checkuser/type?email=${email}`
+        console.log(email, url)
+        fetch(url)
             .then(res => res.json())
             .then(data => {
                 const userData = {
                     email, userType: data
                 }
-                console.log(userData)
+                console.log(data)
                 setAuthToken(userData);
                 setLoading(false)
                 toast.success('Login Successful.....!')

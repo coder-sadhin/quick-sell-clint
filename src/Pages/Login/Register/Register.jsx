@@ -16,8 +16,7 @@ const Register = () => {
     const { createUserWithEmail, updateUserProfile, loading, setLoading, logInWithGoogle } = useContext(AuthContext);
 
     const navigate = useNavigate()
-    const [userRoll, setUserRoll] = useState('user')
-    console.log(userRoll)
+    // console.log(userRoll)
     const handleSubmit = event => {
         event.preventDefault()
         const name = event.target.name.value;
@@ -25,7 +24,7 @@ const Register = () => {
         const email = event.target.email.value;
         const password = event.target.password.value;
 
-        setUserRoll(roll)
+
 
         // Image Upload
         const image = event.target.image.files[0]
@@ -42,6 +41,7 @@ const Register = () => {
                     displayName: name,
                     photoURL: imageData.data.display_url
                 }
+
                 console.log(userInfo)
                 // Create User
                 createUserWithEmail(email, password)
@@ -51,7 +51,7 @@ const Register = () => {
                         // update user profile 
                         updateUserProfile(userInfo)
                             .then(() => {
-                                setUserToDB(name, email, imageData.data.display_url, userRoll);
+                                setUserToDB(name, email, imageData.data.display_url, roll);
                             })
                             .catch(err => {
                                 console.error(err)
@@ -146,7 +146,7 @@ const Register = () => {
                             </div>
                             <div>
                                 <select defaultValue={''} name='userRoll' className="select w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900">
-                                    <option value={''} disabled selected>What type user you are?</option>
+                                    <option value={'user'} disabled selected>What type user you are?</option>
                                     <option value={'user'}>User</option>
                                     <option value={'seller'}>Seller</option>
                                 </select>
