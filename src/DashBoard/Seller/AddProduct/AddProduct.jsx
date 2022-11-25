@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import axios from "axios";
 import Spinner from '../../../Components/Spinner/Spinner';
 import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import userImageUploadApi from '../../../AllApi/UserImageApi';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 
 const AddProduct = () => {
     const [brands, setBrands] = useState([]);
     const [loading, setLoading] = useState(false)
+    const { user } = useContext(AuthContext);
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
@@ -55,6 +56,7 @@ const AddProduct = () => {
 
         const productInfo = {
             name,
+            sellerEmail: user.email,
             price,
             condition,
             location,
@@ -89,20 +91,24 @@ const AddProduct = () => {
     //     // save information to the database 
 
     const setDoctorToDB = (productInfo) => {
-        try {
-            axios.post("http://localhost:5000/product", productInfo)
-                .then((response) => {
-                    console.log(response);
-                    // console.log(response.data.token);
-                    if (response.data.acknowledged) {
-                        toast.success('Your Mobile added successfully');
-                        navigate('/dashboard')
-                        setLoading(false)
-                    }
-                });
 
-        }
-        catch { }
+        fetch('http://localhost:5000/product', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `token ${localStorage.getItem('quicksellToken')}`
+            },
+            body: JSON.stringify(productInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    toast.success('Your Mobile added successfully');
+                    navigate('/dashboard/myProducts')
+                    setLoading(false)
+                }
+            })
     }
     if (isLoading) {
         return <Spinner />
