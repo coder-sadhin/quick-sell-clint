@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import AddCategory from "../DashBoard/Admin/AddCatagory/AddCatagory";
 import AllUsers from "../DashBoard/Admin/AllUser/AllUsers";
 import DashBoard from "../DashBoard/DashBoard/DashBoard";
 import ReportedItem from "../DashBoard/Admin/ReportedItem/ReportedItem";
@@ -20,6 +19,8 @@ import MyProduct from "../DashBoard/Seller/MyProduct/MyProduct";
 import AllProducts from "../DashBoard/Admin/AllProducts/AllProducts";
 import DetailsPage from "../Pages/Brands/Brand/DetailsPage";
 import ProductBooking from "../Pages/Brands/Booking/ProductBooking";
+import MyOrders from "../DashBoard/DashBoard/MyOrders";
+import MyWishList from "../DashBoard/DashBoard/MyWishList";
 
 const router = createBrowserRouter([
     {
@@ -77,12 +78,16 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><DashBoard /></PrivateRoute>
             },
             {
-                path: '/dashboard/allUsers',
-                element: <AllUsers />
+                path: '/dashboard/myOrders',
+                element: <PrivateRoute><MyOrders /></PrivateRoute>
             },
             {
-                path: '/dashboard/addCategory',
-                element: <AddCategory />
+                path: '/dashboard/wishlist',
+                element: <PrivateRoute><MyWishList /></PrivateRoute>
+            },
+            {
+                path: '/dashboard/allUsers',
+                element: <AllUsers />
             },
             {
                 path: '/dashboard/reportItem',

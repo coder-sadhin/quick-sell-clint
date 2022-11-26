@@ -32,7 +32,8 @@ const DashBoardLayout = () => {
                     <ul className="menu p-4 w-80 text-base-content bg-slate-500">
                         {
                             isUser && <>
-                                <li><Link to={'/dashboard'}>My Orders</Link></li>
+                                <li><Link to={'/dashboard/myOrders'}>My Orders</Link></li>
+                                <li><Link to={'/dashboard/wishlist'}>Wish List</Link></li>
                             </>
                         }
 
@@ -47,7 +48,6 @@ const DashBoardLayout = () => {
                             isAdmin && <>
                                 <li><Link to={'/dashboard/allProducts'}>All Products</Link></li>
                                 <li><Link to={'/dashboard/allUsers'}>All Users</Link></li>
-                                <li><Link to={'/dashboard/addCategory'}>Add A Category</Link></li>
                                 <li><Link to={'/dashboard/reportItem'}>Reported Items</Link></li>
                             </>
                         }

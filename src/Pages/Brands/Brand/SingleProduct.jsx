@@ -9,7 +9,7 @@ const SingleProduct = ({ product }) => {
     return (
         <div className='mx-auto'>
             <div className="card card-compact p-5 bg-slate-200 w-80 md:w-96 lg:w-96 shadow-xl shadow-slate-400">
-                <figure> <img src={photoURL} className='w-full' alt="Shoes" /></figure>
+                <figure> <img src={photoURL} className='w-96 h-52' alt="Shoes" /></figure>
                 <div className="card-body">
                     <h2 className="card-title font-bold text-2xl text-green-600">Brand: {brand}</h2>
                     <div>

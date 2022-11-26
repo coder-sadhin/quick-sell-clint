@@ -22,12 +22,23 @@ const DetailsPage = () => {
     const handleWishList = (id) => {
         setLoading(true)
 
-        fetch(`http://localhost:5000/addWish?id=${id}`, {
+        const wishInfo = {
+            mobile,
+            location,
+            brand,
+            sellerEmail,
+            productId: id,
+            photoURL,
+            buying
+        }
+
+        fetch(`http://localhost:5000/addWish`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
                 'authorization': `token ${localStorage.getItem('quicksellToken')}`
-            }
+            },
+            body: JSON.stringify(wishInfo)
         })
             .then(res => res.json())
             .then(data => {
@@ -43,12 +54,23 @@ const DetailsPage = () => {
     const handleToReport = (id) => {
         setLoading(true)
 
-        fetch(`http://localhost:5000/addReport?id=${id}`, {
+        const reportInfo = {
+            mobile,
+            location,
+            brand,
+            sellerEmail,
+            productId: id,
+            photoURL,
+            buying
+        }
+
+        fetch(`http://localhost:5000/addReport`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
                 'authorization': `token ${localStorage.getItem('quicksellToken')}`
-            }
+            },
+            body: JSON.stringify(reportInfo)
         })
             .then(res => res.json())
             .then(data => {

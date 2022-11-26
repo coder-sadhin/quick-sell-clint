@@ -44,7 +44,7 @@ const AddProduct = () => {
 
     const handleAddProduct = (data) => {
         setLoading(true)
-        const name = data.name;
+        const productName = data.productName;
         const price = data.price;
         const condition = data.condition;
         const location = data.location;
@@ -55,7 +55,8 @@ const AddProduct = () => {
         const time = new Date().toLocaleString();
 
         const productInfo = {
-            name,
+            productName,
+            name: user.displayName,
             sellerEmail: user.email,
             price,
             condition,
@@ -126,7 +127,7 @@ const AddProduct = () => {
                                 <label className="label">
                                     <span className="label-text font-bold">Product Name</span>
                                 </label>
-                                <input type="text" className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900' {...register("name", {
+                                <input type="text" className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900' {...register("productName", {
                                     required: "Product Name is required"
                                 })} />
 

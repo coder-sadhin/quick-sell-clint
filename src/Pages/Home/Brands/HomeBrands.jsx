@@ -24,7 +24,9 @@ const Brands = () => {
                                 key={brand._id}
                                 className="p-3 bg-slate-300 flex justify-center rounded-lg"
                             >
-                                <img className='w-28' src={brand.photoUrl} alt="" />
+                                <Link to={`/brands/${brand.brandName}`}>
+                                    <img className='w-28' src={brand.photoUrl} alt="" />
+                                </Link>
                             </div>)
                     }
                 </div>

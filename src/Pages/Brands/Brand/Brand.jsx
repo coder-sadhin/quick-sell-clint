@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 import Spinner from '../../../Components/Spinner/Spinner';
+import NoData from '../../NoData/NoData';
 import SingleProduct from './SingleProduct';
 
 const Brand = () => {
@@ -31,9 +32,7 @@ const Brand = () => {
                                 }
                             </div>
                         </> :
-                        <div className=' mx-auto h-96  flex items-center justify-center rounded-xl bg-base-200'>
-                            <div className="text-6xl text-center">NO Product Found</div>
-                        </div>
+                        <NoData>No Data Found</NoData>
                 }
 
 

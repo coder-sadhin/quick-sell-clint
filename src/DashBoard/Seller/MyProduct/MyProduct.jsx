@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
+import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
 
 const MyProduct = () => {
+    const [loading, setLoading] = useState(false);
 
     const { data: products = [], refetch } = useQuery({
         queryKey: ['products'],
@@ -22,8 +24,33 @@ const MyProduct = () => {
     })
     console.log(products)
 
+    const handleAdvertisment = (_id) => {
+        setLoading(true)
+        const confirm = window.confirm('Went to advertise this item')
+        if (confirm) {
+            console.log(confirm)
+            fetch(`http://localhost:5000/advertise?id=${_id}`, {
+                headers: {
+                    // 'Content-type': 'application/json',
+                    authorization: `bearer ${localStorage.getItem('quicksellToken')}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.acknowledged) {
+                        toast.success('Advertise Successfully')
+                    }
+                    else {
+                        toast.error(data)
+                    }
+                })
+        }
+        setLoading(false)
+    }
+
 
     const handleToDeleteProduct = (_id) => {
+        setLoading(true)
         const confirm = window.confirm('Went to Delete This User')
         if (confirm) {
             console.log(confirm)
@@ -43,6 +70,7 @@ const MyProduct = () => {
                     }
                 })
         }
+        setLoading(false)
     }
 
 
@@ -92,10 +120,10 @@ const MyProduct = () => {
                                     </td>
                                     <td>${product.price}</td>
                                     <td >
-                                        <PrimaryButton classes={'btn btn-sm'} handler={() => handleToDeleteProduct(product._id)}>Advertisement</PrimaryButton>
+                                        <PrimaryButton classes={'btn btn-sm'} handler={() => handleAdvertisment(product._id)}>{loading ? <SmallSpinner /> : 'Advertisement'}</PrimaryButton>
                                     </td>
                                     <th>
-                                        <PrimaryButton classes={'btn btn-sm'} handler={() => handleToDeleteProduct(product._id)}>Delete</PrimaryButton>
+                                        <PrimaryButton classes={'btn btn-sm'} handler={() => handleToDeleteProduct(product._id)}>{loading ? <SmallSpinner /> : 'Delete'}</PrimaryButton>
                                     </th>
                                 </tr>
                             )

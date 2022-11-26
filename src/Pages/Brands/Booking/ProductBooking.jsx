@@ -29,6 +29,7 @@ const ProductBooking = () => {
         const bookingInfo = {
             buyerName: user.displayName,
             buyerEmail: user.email,
+            buyerImage: user.photoURL,
             mobile,
             buyerDescription,
             location,
@@ -36,7 +37,9 @@ const ProductBooking = () => {
             sellerEmail,
             productId: _id,
             photoURL,
-            buying
+            buying,
+            price,
+            paying: 'Unpaid'
         }
 
         fetch('http://localhost:5000/booking', {
@@ -57,16 +60,7 @@ const ProductBooking = () => {
                 }
             })
 
-
-
     }
-
-
-
-
-
-
-
 
     return (
         <div className='flex justify-center items-center py-5'>

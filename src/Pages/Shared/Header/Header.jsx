@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const Header = () => {
-
+    const navigate = useNavigate();
     const { user, userSignOut } = useContext(AuthContext)
 
     const handleToSignOut = () => {
         userSignOut()
         localStorage.removeItem('quicksellToken')
+        navigate('/')
     }
 
 
