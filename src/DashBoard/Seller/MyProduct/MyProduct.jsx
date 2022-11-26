@@ -22,7 +22,7 @@ const MyProduct = () => {
             catch (err) { }
         }
     })
-    console.log(products)
+    // console.log(products)
 
     const handleAdvertisment = (_id) => {
         setLoading(true)

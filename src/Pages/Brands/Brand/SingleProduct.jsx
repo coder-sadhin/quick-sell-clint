@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
 
 const SingleProduct = ({ product }) => {
     const { photoURL, price, brand, condition, _id } = product;
     // console.log(product)
+
+    const handleToast = () => {
+        toast.error('This Product Already Booked')
+    }
 
     return (
         <div className='mx-auto'>
@@ -17,9 +22,15 @@ const SingleProduct = ({ product }) => {
                         <h2 className="card-title font-bold">Condition: {condition}</h2>
                     </div>
                     <div className="card-actions mt-5">
-                        <Link to={`/details/${_id}`} className='w-full'>
-                            <PrimaryButton classes={'btn w-full'}>Details</PrimaryButton>
-                        </Link>
+                        {
+                            !product?.paying ?
+                                <Link to={`/details/${_id}`} className='w-full'>
+                                    <PrimaryButton classes={'btn w-full'}>Details</PrimaryButton>
+                                </Link>
+                                :
+                                <PrimaryButton handler={handleToast} classes={'btn w-full'}>BOOKED</PrimaryButton>
+                        }
+
                     </div>
                 </div>
             </div>
