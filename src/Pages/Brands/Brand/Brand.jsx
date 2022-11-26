@@ -1,5 +1,6 @@
 import React from 'react';
-import { useLoaderData, useNavigation } from 'react-router-dom';
+import { useLoaderData, useNavigation, Link } from 'react-router-dom';
+import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import Spinner from '../../../Components/Spinner/Spinner';
 import NoData from '../../NoData/NoData';
 import SingleProduct from './SingleProduct';
@@ -31,8 +32,16 @@ const Brand = () => {
                                     ></SingleProduct>)
                                 }
                             </div>
+                            <Link className='flex justify-center my-5' to={'/brands'}>
+                                <PrimaryButton>GO Brands Page</PrimaryButton>
+                            </Link>
                         </> :
-                        <NoData>No Data Found</NoData>
+                        <div>
+                            <NoData>No Data Found</NoData>
+                            <Link className='flex justify-center my-5' to={'/brands'}>
+                                <PrimaryButton>GO Brands Page</PrimaryButton>
+                            </Link>
+                        </div>
                 }
 
 

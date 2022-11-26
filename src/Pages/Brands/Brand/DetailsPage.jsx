@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData, useNavigation, useNavigate } from 'react-router-dom';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import Spinner from '../../../Components/Spinner/Spinner';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const DetailsPage = () => {
+    const { user } = useContext(AuthContext);
     const data = useLoaderData();
     const { brand, buying, condition, description, location, mobile, name, photoURL
         , price, sellerEmail, time, _id } = data;
@@ -29,7 +31,9 @@ const DetailsPage = () => {
             sellerEmail,
             productId: id,
             photoURL,
-            buying
+            buying,
+            buyerEmail: user.email,
+            price
         }
 
         fetch(`http://localhost:5000/addWish`, {
@@ -42,10 +46,14 @@ const DetailsPage = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.acknowledged) {
                     toast.success('Your Mobile added successfully');
                     navigate('/brands')
+                    setLoading(false)
+                }
+                else {
+                    toast.error(data);
                     setLoading(false)
                 }
             })
