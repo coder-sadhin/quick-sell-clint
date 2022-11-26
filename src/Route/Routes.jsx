@@ -21,6 +21,7 @@ import DetailsPage from "../Pages/Brands/Brand/DetailsPage";
 import ProductBooking from "../Pages/Brands/Booking/ProductBooking";
 import MyOrders from "../DashBoard/DashBoard/MyOrders";
 import MyWishList from "../DashBoard/DashBoard/MyWishList";
+import AllSeller from "../DashBoard/Admin/AllSeller/AllSeller";
 
 const router = createBrowserRouter([
     {
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
             {
                 path: '/details/:id',
                 loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`),
-                element: <DetailsPage />
+                element: <PrivateRoute><DetailsPage /></PrivateRoute>
             },
             {
                 path: '/booking/:id',
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allUsers',
                 element: <AllUsers />
+            },
+            {
+                path: '/dashboard/allSeller',
+                element: <AllSeller />
             },
             {
                 path: '/dashboard/reportItem',

@@ -6,16 +6,23 @@ import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import ProductBooking from '../Booking/ProductBooking';
 
 const DetailsPage = () => {
     const { user } = useContext(AuthContext);
     const data = useLoaderData();
-    const { brand, buying, condition, description, location, mobile, name, photoURL
-        , price, sellerEmail, time, _id } = data;
-
     const navigation = useNavigation();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false)
+    // console.log(data)
+    const [openModal, setOpenModal] = useState(false);
+    const { brand, buying, condition, description, productName, location, mobile, name, photoURL
+        , price, sellerEmail, time, _id } = data;
+
+    const handleToModal = () => {
+        setOpenModal(true)
+    }
+
 
     if (navigation.state === "loading") {
         return <Spinner></Spinner>
@@ -95,7 +102,7 @@ const DetailsPage = () => {
         <div className="card  lg:card-side bg-base-100 my-10 shadow-xl">
             <figure className='w-full p-10'><img className='rounded-lg' src={photoURL} alt="Album" /></figure>
             <div className="card-body">
-                <h2 className="text-4xl font-bold text-center text-cyan-500">{brand}</h2>
+                <h2 className="text-4xl font-bold text-center text-cyan-500">{productName}</h2>
                 <div className='flex my-5 flex-col md:flex-row lg:flex-row'>
                     <p className='text-xl'>Product Condition: <span className='font-bold'> {condition}</span></p>
                     <p className='text-xl'>Price: <span className='font-bold'> ${price}</span></p>
@@ -124,12 +131,18 @@ const DetailsPage = () => {
                 </div>
                 <div className="card-actions justify-center my-5">
                     <PrimaryButton handler={() => handleWishList(_id)} classes={'btn'}>{loading ? <SmallSpinner /> : 'Add Wish List'}</PrimaryButton>
-                    <Link to={`/booking/${_id}`}>
-                        <PrimaryButton classes={'btn'}>Booking</PrimaryButton>
-                    </Link>
+                    <label htmlFor="bookingModal" onClick={handleToModal} className="hover:text-bold btn bg-gradient-to-r from-primary to-secondary text-white"
+                    >Book Now</label>
                     <PrimaryButton handler={() => handleToReport(_id)} classes={'btn'}>{loading ? <SmallSpinner /> : 'Report This Product'}</PrimaryButton>
                 </div>
             </div>
+            {
+                openModal && <ProductBooking
+                    openModal={openModal}
+                    product={data}
+                    setOpenModal={setOpenModal}
+                ></ProductBooking>
+            }
         </div>
     );
 };

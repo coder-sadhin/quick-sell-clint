@@ -1,7 +1,6 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import PrimaryButton from '../../Components/Button/PrimaryButton';
 import NoData from '../../Pages/NoData/NoData';
 
 
@@ -97,7 +96,7 @@ const MyOrders = () => {
                                                     <td>{order.sellerEmail}</td>
 
                                                     <th>
-                                                        <button onClick={() => handleToPay(order._id)} disabled={(order.paying === 'paid' ? true : false)} className='btn btn-sm'>{order.paying === 'paid' ? 'Paid' : 'Pay'}</button>
+                                                        <button onClick={() => handleToPay(order._id)} disabled={(order.paying === 'paid' ? true : false)} className='hover:text-orange-500 btn-sm btn bg-gradient-to-r from-primary to-secondary text-white'>{order.paying === 'paid' ? 'Paid' : 'Pay'}</button>
                                                     </th>
                                                 </tr>
                                             )

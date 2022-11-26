@@ -26,6 +26,7 @@ const Register = () => {
 
 
 
+
         // Image Upload
         const image = event.target.image.files[0]
         const formData = new FormData()
@@ -81,10 +82,13 @@ const Register = () => {
     }
 
 
-    const setUserToDB = (name, email, photoURL, userRoll) => {
+    const setUserToDB = (name, email, photoURL, userRoll,) => {
         const user = {
             name, email, photoURL, userType: userRoll
         };
+        if (userRoll === 'seller') {
+            user.sellerStatus = 'nonVerify'
+        }
         const userData = {
             email, userType: userRoll
         }

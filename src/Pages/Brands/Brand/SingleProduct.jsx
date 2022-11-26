@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
+import ProductBooking from '../Booking/ProductBooking';
 
 const SingleProduct = ({ product }) => {
     const { photoURL, price, brand, condition, _id } = product;
-    // console.log(product)
+    const [openModal, setOpenModal] = useState(false);
 
     const handleToast = () => {
         toast.error('This Product Already Booked')
+    }
+    const handleToModal = () => {
+        setOpenModal(true)
     }
 
     return (
@@ -24,16 +28,29 @@ const SingleProduct = ({ product }) => {
                     <div className="card-actions mt-5">
                         {
                             !product?.paying ?
-                                <Link to={`/details/${_id}`} className='w-full'>
-                                    <PrimaryButton classes={'btn w-full'}>Details</PrimaryButton>
-                                </Link>
+                                <>
+                                    <label htmlFor="bookingModal" onClick={handleToModal} className="hover:text-xl w-full btn bg-gradient-to-r from-primary to-secondary text-white"
+                                    >Book Now</label>
+                                    <Link to={`/details/${_id}`} className='w-full'>
+                                        <PrimaryButton classes={'btn w-full hover:text-xl'}>Details</PrimaryButton>
+                                    </Link>
+                                </>
+
                                 :
                                 <PrimaryButton handler={handleToast} classes={'btn w-full'}>BOOKED</PrimaryButton>
+                        }
+                        {
+                            openModal && <ProductBooking
+                                openModal={openModal}
+                                product={product}
+                                setOpenModal={setOpenModal}
+                            ></ProductBooking>
                         }
 
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };

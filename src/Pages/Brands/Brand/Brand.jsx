@@ -33,13 +33,13 @@ const Brand = () => {
                                 }
                             </div>
                             <Link className='flex justify-center my-5' to={'/brands'}>
-                                <PrimaryButton>GO Brands Page</PrimaryButton>
+                                <PrimaryButton classes={'hover:text-xl'}>GO Brands Page</PrimaryButton>
                             </Link>
                         </> :
                         <div>
                             <NoData>No Data Found</NoData>
                             <Link className='flex justify-center my-5' to={'/brands'}>
-                                <PrimaryButton>GO Brands Page</PrimaryButton>
+                                <PrimaryButton classes={'hover:text-xl'}>GO Brands Page</PrimaryButton>
                             </Link>
                         </div>
                 }
