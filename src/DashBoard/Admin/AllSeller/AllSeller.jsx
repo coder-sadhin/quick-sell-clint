@@ -4,8 +4,10 @@ import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import toast from 'react-hot-toast';
 import NoData from '../../../Pages/NoData/NoData';
 import Spinner from '../../../Components/Spinner/Spinner';
+import { useTitle } from 'react-use';
 
 const AllSeller = () => {
+    useTitle('Admin Dashboard - AllSeller')
     const { data: users = [], refetch, isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {

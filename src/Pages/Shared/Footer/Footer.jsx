@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../../../headerLogo.png'
 
 const Footer = () => {
     return (
@@ -16,8 +17,9 @@ const Footer = () => {
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="fill-current"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg>
                 </div>
             </div>
-            <div>
-                <p>Copyright © 2022 - All right reserved by <Link to={'/'} className="btn btn-ghost font-bold text-2xl"><span className='text-red-500'>QUICK</span>SELL</Link></p>
+            <div className='flex'>
+                <p>Copyright © 2022 - All right reserved by </p>
+                <Link to={'/'} ><img className='w-24 rounded-lg md:w-28 lg:40 ' src={logo} alt="" /></Link>
             </div>
         </footer>
     );

@@ -4,10 +4,11 @@ import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import Spinner from '../../../Components/Spinner/Spinner';
 import NoData from '../../NoData/NoData';
 import SingleProduct from './SingleProduct';
+import { useTitle } from 'react-use';
 
 const Brand = () => {
-
     const { result, brandName } = useLoaderData();
+    useTitle(`Quick SELL- ${brandName}`)
     const products = result;
     const navigation = useNavigation();
     // console.log(result, brandName)

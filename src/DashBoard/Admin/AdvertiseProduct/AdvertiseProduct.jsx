@@ -4,8 +4,10 @@ import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import toast from 'react-hot-toast';
 import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
 import NoData from '../../../Pages/NoData/NoData';
+import { useTitle } from 'react-use';
 
 const AdvertiseProduct = () => {
+    useTitle('Admin Dashboard - Advertise')
     const [loading, setLoading] = useState(false);
     const { data: products = [], refetch } = useQuery({
         queryKey: ['products'],

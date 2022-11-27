@@ -4,8 +4,10 @@ import toast from 'react-hot-toast';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
 import NoData from '../../../Pages/NoData/NoData';
+import { useTitle } from 'react-use';
 
 const MyBuyer = () => {
+    useTitle('Seller Dashboard - All Buyers')
     const { data: buyers = [], refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {

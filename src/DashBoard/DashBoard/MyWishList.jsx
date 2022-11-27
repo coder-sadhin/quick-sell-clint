@@ -2,11 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import PrimaryButton from '../../Components/Button/PrimaryButton';
 import NoData from '../../Pages/NoData/NoData';
+import { useTitle } from 'react-use';
 
 
 const MyWishList = () => {
+    useTitle('Dashboard- WishList')
     const navigate = useNavigate();
 
     const { data: wishList = [], refetch } = useQuery({

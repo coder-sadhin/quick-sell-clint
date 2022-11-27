@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import ProductBooking from '../Booking/ProductBooking';
+import { useTitle } from 'react-use';
 
 const DetailsPage = () => {
     const { user } = useContext(AuthContext);
@@ -18,7 +19,7 @@ const DetailsPage = () => {
     const [openModal, setOpenModal] = useState(false);
     const { brand, buying, condition, description, productName, location, mobile, name, photoURL
         , price, sellerEmail, time, _id } = data;
-
+    useTitle(`Quick SELL- ${productName}`)
     const handleToModal = () => {
         setOpenModal(true)
     }

@@ -2,14 +2,16 @@ import React, { useContext } from 'react';
 import Spinner from '../../Components/Spinner/Spinner';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider'
 import useUserType from '../../Hooks/useUserType';
+import { useTitle } from 'react-use';
 
 const DashBoard = () => {
+    useTitle('Dashboard - Welcome')
     const { user } = useContext(AuthContext)
     const [isAdmin, isSeller, isUser, userLoading] = useUserType(user.email)
+
     if (userLoading) {
         return <Spinner />
     }
-
     return (
         <div>
             <div className='h-screen text-gray-700 flex flex-col justify-center items-center pb-16'>
@@ -28,5 +30,4 @@ const DashBoard = () => {
         </div>
     );
 };
-
 export default DashBoard;

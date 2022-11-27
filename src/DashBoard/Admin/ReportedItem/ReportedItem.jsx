@@ -3,8 +3,10 @@ import { useQuery } from '@tanstack/react-query';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import toast from 'react-hot-toast';
 import NoData from '../../../Pages/NoData/NoData';
+import { useTitle } from 'react-use';
 
 const ReportedItem = () => {
+    useTitle('Admin Dashboard - Reported Items')
     const { data: products = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {

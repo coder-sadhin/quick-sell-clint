@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import NoData from '../../Pages/NoData/NoData';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import { useTitle } from 'react-use';
 
 
 const MyOrders = () => {
+    useTitle('Dashboard - Orders Page')
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
 

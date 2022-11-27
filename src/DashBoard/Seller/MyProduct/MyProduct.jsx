@@ -4,8 +4,10 @@ import toast from 'react-hot-toast';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
 import NoData from '../../../Pages/NoData/NoData';
+import { useTitle } from 'react-use';
 
 const MyProduct = () => {
+    useTitle('Seller Dashboard - All Product')
     const [loading, setLoading] = useState(false);
 
     const { data: products = [], refetch } = useQuery({

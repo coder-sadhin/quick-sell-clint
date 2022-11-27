@@ -20,7 +20,7 @@ const CheckOutForm = ({ product }) => {
 
     // console.log(product)
     useEffect(() => {
-        fetch(`http://localhost:5000/payment/intent`, {
+        fetch(`https://sell-dao-server.vercel.app/payment/intent`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -94,7 +94,7 @@ const CheckOutForm = ({ product }) => {
                 buyerEmail,
                 productId: productId
             };
-            fetch("http://localhost:5000/paymentsStore", {
+            fetch("https://sell-dao-server.vercel.app/paymentsStore", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -4,8 +4,10 @@ import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
+import { useTitle } from 'react-use';
 
 const AllProducts = () => {
+    useTitle('Admin Dashboard - All Product')
     const [loading, setLoading] = useState(false);
     const { data: products = [], refetch } = useQuery({
         queryKey: ['products'],
@@ -28,7 +30,7 @@ const AllProducts = () => {
         const confirm = window.confirm('Went to Delete This User')
         if (confirm) {
             console.log(confirm)
-            const url = `http://localhost:5000/allProduct?id=${_id}`;
+            const url = `https://sell-dao-server.vercel.app/allProduct?id=${_id}`;
             fetch(url, {
                 method: 'DELETE',
                 headers: {

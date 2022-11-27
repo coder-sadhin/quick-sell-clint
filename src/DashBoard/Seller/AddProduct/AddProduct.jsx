@@ -8,9 +8,11 @@ import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import userImageUploadApi from '../../../AllApi/UserImageApi';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import { useTitle } from 'react-use';
 
 
 const AddProduct = () => {
+    useTitle('Seller Dashboard - Add Product')
     const [brands, setBrands] = useState([]);
     const [loading, setLoading] = useState(false)
     const { user } = useContext(AuthContext);

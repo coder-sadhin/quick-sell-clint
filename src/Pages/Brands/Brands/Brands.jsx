@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { brandApi } from '../../../AllApi/BrandImageApi';
+import { useTitle } from 'react-use';
 
 const Brands = () => {
+    useTitle('Quick SELL- Brands')
     const [brands, setBrands] = useState([]);
     useEffect(() => {
         fetch(brandApi)

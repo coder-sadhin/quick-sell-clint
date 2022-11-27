@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import logo from '../../../headerLogo.png'
 
 const Header = () => {
     const navigate = useNavigate();
@@ -43,7 +44,7 @@ const Header = () => {
                                 {menuItems}
                             </ul>
                         </div>
-                        <Link to={'/'} className="btn btn-ghost font-bold text-2xl"><span className='text-red-500'>QUICK</span>SELL</Link>
+                        <Link to={'/'} ><img className='w-24 rounded-lg md:w-28 lg:40 ' src={logo} alt="" /></Link>
                     </div>
                     <div className="navbar-end hidden lg:flex ">
                         <ul className="menu menu-horizontal p-0">
