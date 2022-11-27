@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useLoaderData, useNavigation, useNavigate } from 'react-router-dom';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import Spinner from '../../../Components/Spinner/Spinner';
-import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
@@ -22,6 +22,23 @@ const DetailsPage = () => {
     const handleToModal = () => {
         setOpenModal(true)
     }
+
+    const { data: seller = '' } = useQuery({
+        queryKey: ['seller'],
+        queryFn: async () => {
+            try {
+                const res = await fetch(`http://localhost:5000/sellerVerify?email=${sellerEmail}`, {
+                    headers: {
+                        'authorization': `token ${localStorage.getItem('quicksellToken')}`
+                    }
+                });
+                const data = await res.json();
+
+                return data
+            }
+            catch (err) { }
+        }
+    })
 
 
     if (navigation.state === "loading") {
@@ -108,8 +125,13 @@ const DetailsPage = () => {
                     <p className='text-xl'>Price: <span className='font-bold'> ${price}</span></p>
                     <p className='text-xl'>Location: <span className='font-bold'> {location}</span></p>
                 </div>
-                <div>
+                <div className='flex justify-between'>
                     <h4 className='text-xl'>About This Phone: <div className='font-bold'>{description}</div></h4>
+                    <div className='w-14'>
+                        {
+                            seller === "verify" && <img src="https://i.ibb.co/mJwB4QT/6874364-removebg-preview.png" alt="" />
+                        }
+                    </div>
                 </div>
 
                 <div className="stats stats-vertical lg:stats-horizontal shadow">

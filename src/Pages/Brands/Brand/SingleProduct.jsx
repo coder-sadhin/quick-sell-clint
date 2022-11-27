@@ -1,13 +1,31 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import ProductBooking from '../Booking/ProductBooking';
 
 const SingleProduct = ({ product }) => {
-    const { photoURL, price, brand, condition, _id } = product;
+    const { photoURL, price, brand, condition, _id, sellerEmail } = product;
     const [openModal, setOpenModal] = useState(false);
 
+    const { data: seller = '' } = useQuery({
+        queryKey: ['seller'],
+        queryFn: async () => {
+            try {
+                const res = await fetch(`http://localhost:5000/sellerVerify?email=${sellerEmail}`, {
+                    headers: {
+                        'authorization': `token ${localStorage.getItem('quicksellToken')}`
+                    }
+                });
+                const data = await res.json();
+
+                return data
+            }
+            catch (err) { }
+        }
+    })
+    // console.log(user)
     const handleToast = () => {
         toast.error('This Product Already Booked')
     }
@@ -21,9 +39,16 @@ const SingleProduct = ({ product }) => {
                 <figure> <img src={photoURL} className='w-96 h-52' alt="Shoes" /></figure>
                 <div className="card-body">
                     <h2 className="card-title font-bold text-2xl text-green-600">Brand: {brand}</h2>
-                    <div>
-                        <h2 className="card-title font-bold">Price: ${price}</h2>
-                        <h2 className="card-title font-bold">Condition: {condition}</h2>
+                    <div className='flex justify-between'>
+                        <div>
+                            <h2 className="card-title font-bold">Price: ${price}</h2>
+                            <h2 className="card-title font-bold">Condition: {condition}</h2>
+                        </div>
+                        <div className='w-14'>
+                            {
+                                seller === "verify" && <img src="https://i.ibb.co/mJwB4QT/6874364-removebg-preview.png" alt="" />
+                            }
+                        </div>
                     </div>
                     <div className="card-actions mt-5">
                         {

@@ -11,7 +11,7 @@ const ProductBooking = ({ openModal, product, setOpenModal }) => {
 
     const { user } = useContext(AuthContext)
     const [loading, setLoading] = useState(false)
-    const { brand, buying, location, photoURL, price, sellerEmail, _id } = product;
+    const { brand, buying, location, photoURL, price, sellerEmail, _id, productName } = product;
 
     const navigation = useNavigation();
     const navigate = useNavigate();
@@ -35,6 +35,7 @@ const ProductBooking = ({ openModal, product, setOpenModal }) => {
             buyerDescription,
             location,
             brand,
+            productName,
             sellerEmail,
             productId: _id,
             photoURL,
@@ -75,7 +76,7 @@ const ProductBooking = ({ openModal, product, setOpenModal }) => {
                             <div className="modal-box relative">
                                 <label htmlFor="bookingModal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 
-                                <div className='flex flex-col w-full p-6 rounded-md sm:p-10 bg-gray-200 text-gray-900'>
+                                <div className='flex flex-col w-full p-6 rounded-md sm:p-6 bg-gray-200 text-gray-900'>
                                     <div className='mb-8 text-center'>
                                         <h1 className='text-4xl font-bold'>{user.displayName}</h1>
                                         <p className='text-sm text-gray-400'>
@@ -86,15 +87,15 @@ const ProductBooking = ({ openModal, product, setOpenModal }) => {
                                         onSubmit={handleSubmit}
                                         noValidate=''
                                         action=''
-                                        className='space-y-6 ng-untouched ng-pristine ng-valid'
+                                        className='ng-untouched ng-pristine ng-valid'
                                     >
                                         <div className='space-y-4'>
                                             <div className='flex md:flex-row lg:flex-row flex-col gap-3'>
                                                 <div className="form-control w-full md:w-6/12 lg:w-6/12">
                                                     <label className="label">
-                                                        <span className="label-text font-bold">Product Brand</span>
+                                                        <span className="label-text font-bold">Product Name</span>
                                                     </label>
-                                                    <input value={brand} disabled type='text'
+                                                    <input value={productName} disabled type='text'
                                                         className='w-full px-3 py-2 border rounded-md border-gray-400 focus:outline-green-500 bg-gray-200 text-gray-900'
                                                     />
                                                 </div>
@@ -112,9 +113,28 @@ const ProductBooking = ({ openModal, product, setOpenModal }) => {
                                             <div className='flex md:flex-row lg:flex-row flex-col gap-3'>
                                                 <div className="form-control w-full md:w-6/12 lg:w-6/12">
                                                     <label className="label">
+                                                        <span className="label-text font-bold">Product Brand</span>
+                                                    </label>
+                                                    <input value={brand} disabled type='text'
+                                                        className='w-full px-3 py-2 border rounded-md border-gray-400 focus:outline-green-500 bg-gray-200 text-gray-900'
+                                                    />
+                                                </div>
+                                                <div className="form-control w-full md:w-6/12 lg:w-6/12">
+                                                    <label className="label">
                                                         <span className="label-text font-bold">Location</span>
                                                     </label>
                                                     <input value={location} disabled type='text'
+                                                        className='w-full px-3 py-2 border rounded-md border-gray-400 focus:outline-green-500 bg-gray-200 text-gray-900'
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className='flex md:flex-row lg:flex-row flex-col gap-3'>
+                                                <div className="form-control w-full md:w-6/12 lg:w-6/12">
+                                                    <label className="label">
+                                                        <span className="label-text font-bold">Your Email</span>
+                                                    </label>
+                                                    <input value={user.email} disabled type='text'
                                                         className='w-full px-3 py-2 border rounded-md border-gray-400 focus:outline-green-500 bg-gray-200 text-gray-900'
                                                     />
                                                 </div>
@@ -122,7 +142,7 @@ const ProductBooking = ({ openModal, product, setOpenModal }) => {
                                                     <label className="label">
                                                         <span className="label-text font-bold">Your Mobile Number</span>
                                                     </label>
-                                                    <input type='number' name='mobile'
+                                                    <input required type='number' name='mobile'
                                                         className='w-full px-3 py-2 border rounded-md border-gray-400 focus:outline-green-500 bg-gray-200 text-gray-900'
 
                                                     />
@@ -133,7 +153,7 @@ const ProductBooking = ({ openModal, product, setOpenModal }) => {
                                                 <label className="label">
                                                     <span className="label-text font-bold">Sort Description</span>
                                                 </label>
-                                                <textarea name='description' className='w-full px-3 py-2 border rounded-md border-gray-400 focus:outline-green-500 bg-gray-200 text-gray-900'>
+                                                <textarea required name='description' className='w-full px-3 py-2 border rounded-md border-gray-400 focus:outline-green-500 bg-gray-200 text-gray-900'>
 
                                                 </textarea>
                                             </div>
@@ -141,7 +161,7 @@ const ProductBooking = ({ openModal, product, setOpenModal }) => {
                                         </div>
 
 
-                                        <div>
+                                        <div className='mt-5'>
                                             <PrimaryButton
                                                 type='submit'
                                                 classes='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'

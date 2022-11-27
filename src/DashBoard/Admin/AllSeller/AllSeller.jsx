@@ -46,7 +46,7 @@ const AllSeller = () => {
                 })
         }
     }
-    console.log(users)
+    // console.log(users)
     return (
         <div className='w-11/12 mx-auto'>
             {users?.length > 0 ?
