@@ -24,9 +24,6 @@ const Register = () => {
         const email = event.target.email.value;
         const password = event.target.password.value;
 
-
-
-
         // Image Upload
         const image = event.target.image.files[0]
         const formData = new FormData()
@@ -55,16 +52,19 @@ const Register = () => {
                                 setUserToDB(name, email, imageData.data.display_url, roll);
                             })
                             .catch(err => {
+                                toast.error(err)
                                 console.error(err)
                             })
                     })
                     .catch(err => {
                         console.error(err)
+                        toast.error(err)
                         setLoading(false)
                     })
             })
             .catch(err => {
                 console.log(err)
+                toast.error(err)
                 setLoading(false)
             })
     }

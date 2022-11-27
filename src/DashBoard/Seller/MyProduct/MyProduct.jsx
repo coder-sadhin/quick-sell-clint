@@ -123,9 +123,27 @@ const MyProduct = () => {
                                                         </div>
                                                     </td>
                                                     <td>${product.price}</td>
-                                                    <td >
-                                                        <PrimaryButton classes={'btn btn-sm'} handler={() => handleAdvertisment(product._id)}>{loading ? <SmallSpinner /> : 'Advertisement'}</PrimaryButton>
-                                                    </td>
+                                                    {
+                                                        product.paying ?
+                                                            <>
+                                                                {
+                                                                    product.paying === "Unpaid" ?
+                                                                        <td >
+                                                                            <PrimaryButton classes={'btn btn-sm'}>BOOKED</PrimaryButton>
+                                                                        </td>
+                                                                        :
+                                                                        <td >
+                                                                            <PrimaryButton classes={'btn btn-sm'}>SOLD</PrimaryButton>
+                                                                        </td>
+
+                                                                }
+                                                            </>
+
+                                                            :
+                                                            <td >
+                                                                <PrimaryButton classes={'btn text-red-400 btn-sm'} handler={() => handleAdvertisment(product._id)}>{loading ? <SmallSpinner /> : 'Advertisement'}</PrimaryButton>
+                                                            </td>
+                                                    }
                                                     <th>
                                                         <PrimaryButton classes={'btn btn-sm'} handler={() => handleToDeleteProduct(product._id)}>{loading ? <SmallSpinner /> : 'Delete'}</PrimaryButton>
                                                     </th>

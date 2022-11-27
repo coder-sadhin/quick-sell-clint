@@ -31,7 +31,7 @@ const AllUsers = () => {
     const handleToDeleteUser = (id) => {
         const confirm = window.confirm('Went to Delete This User')
         if (confirm) {
-            const url = `https://sell-dao-server.vercel.app/user?id=${id}`
+            const url = `http://localhost:5000/user?id=${id}`
             fetch(url, {
                 method: 'DELETE',
                 headers: {
