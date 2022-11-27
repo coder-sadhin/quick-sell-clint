@@ -27,7 +27,7 @@ const DetailsPage = () => {
         queryKey: ['seller'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/sellerVerify?email=${sellerEmail}`, {
+                const res = await fetch(`https://sell-dao-server.vercel.app/sellerVerify?email=${sellerEmail}`, {
                     headers: {
                         'authorization': `token ${localStorage.getItem('quicksellToken')}`
                     }
@@ -60,7 +60,7 @@ const DetailsPage = () => {
             price
         }
 
-        fetch(`http://localhost:5000/addWish`, {
+        fetch(`https://sell-dao-server.vercel.app/addWish`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -96,7 +96,7 @@ const DetailsPage = () => {
             buying
         }
 
-        fetch(`http://localhost:5000/addReport`, {
+        fetch(`https://sell-dao-server.vercel.app/addReport`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

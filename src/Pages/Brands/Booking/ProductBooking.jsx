@@ -44,7 +44,7 @@ const ProductBooking = ({ openModal, product, setOpenModal }) => {
             paying: 'Unpaid'
         }
 
-        fetch('http://localhost:5000/booking', {
+        fetch('https://sell-dao-server.vercel.app/booking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -74,7 +74,7 @@ const ProductBooking = ({ openModal, product, setOpenModal }) => {
                         <input type="checkbox" id="bookingModal" className="modal-toggle" />
                         <div className="modal">
                             <div className="modal-box relative">
-                                <label htmlFor="bookingModal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                                <label htmlFor="bookingModal" onClick={() => setOpenModal(false)} className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 
                                 <div className='flex flex-col w-full p-6 rounded-md sm:p-6 bg-gray-200 text-gray-900'>
                                     <div className='mb-8 text-center'>
@@ -171,95 +171,11 @@ const ProductBooking = ({ openModal, product, setOpenModal }) => {
                                         </div>
                                     </form>
                                 </div>
-
-
-
-
-
-
                             </div>
                         </div>
                     </>
                 }
             </>
-            {/* <div className='flex justify-center items-center py-5'>
-                <div className='flex flex-col w-full p-6 rounded-md sm:p-10 bg-gray-200 text-gray-900'>
-                    <div className='mb-8 text-center'>
-                        <h1 className='text-4xl font-bold'>{user.displayName}</h1>
-                        <p className='text-sm text-gray-400'>
-                            Complete Your Order
-                        </p>
-                    </div>
-                    <form
-                        onSubmit={handleSubmit}
-                        noValidate=''
-                        action=''
-                        className='space-y-6 ng-untouched ng-pristine ng-valid'
-                    >
-                        <div className='space-y-4'>
-                            <div className='flex md:flex-row lg:flex-row flex-col gap-3'>
-                                <div className="form-control w-full md:w-6/12 lg:w-6/12">
-                                    <label className="label">
-                                        <span className="label-text font-bold">Product Brand</span>
-                                    </label>
-                                    <input value={brand} disabled type='text'
-                                        className='w-full px-3 py-2 border rounded-md border-gray-400 focus:outline-green-500 bg-gray-200 text-gray-900'
-                                    />
-                                </div>
-                                <div className="form-control w-full md:w-6/12 lg:w-6/12">
-                                    <label className="label">
-                                        <span className="label-text font-bold">Price</span>
-                                    </label>
-                                    <input type='number' value={price} disabled name='price'
-                                        className='w-full px-3 py-2 border rounded-md border-gray-400 focus:outline-green-500 bg-gray-200 text-gray-900'
-
-                                    />
-                                </div>
-                            </div>
-
-                            <div className='flex md:flex-row lg:flex-row flex-col gap-3'>
-                                <div className="form-control w-full md:w-6/12 lg:w-6/12">
-                                    <label className="label">
-                                        <span className="label-text font-bold">Location</span>
-                                    </label>
-                                    <input value={location} disabled type='text'
-                                        className='w-full px-3 py-2 border rounded-md border-gray-400 focus:outline-green-500 bg-gray-200 text-gray-900'
-                                    />
-                                </div>
-                                <div className="form-control w-full md:w-6/12 lg:w-6/12">
-                                    <label className="label">
-                                        <span className="label-text font-bold">Your Mobile Number</span>
-                                    </label>
-                                    <input type='number' name='mobile'
-                                        className='w-full px-3 py-2 border rounded-md border-gray-400 focus:outline-green-500 bg-gray-200 text-gray-900'
-
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="form-control w-full">
-                                <label className="label">
-                                    <span className="label-text font-bold">Sort Description</span>
-                                </label>
-                                <textarea name='description' className='w-full px-3 py-2 border rounded-md border-gray-400 focus:outline-green-500 bg-gray-200 text-gray-900'>
-
-                                </textarea>
-                            </div>
-
-                        </div>
-
-
-                        <div>
-                            <PrimaryButton
-                                type='submit'
-                                classes='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
-                            >
-                                {loading ? <SmallSpinner /> : 'Confirm Booking'}
-                            </PrimaryButton>
-                        </div>
-                    </form>
-                </div>
-            </div> */}
         </div>
     );
 };

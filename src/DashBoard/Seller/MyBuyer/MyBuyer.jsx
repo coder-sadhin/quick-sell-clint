@@ -10,7 +10,7 @@ const MyBuyer = () => {
         queryKey: ['buyers'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/bookingSell', {
+                const res = await fetch('https://sell-dao-server.vercel.app/bookingSell', {
                     headers: {
                         'authorization': `token ${localStorage.getItem('quicksellToken')}`
                     }

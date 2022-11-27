@@ -13,7 +13,7 @@ const MyWishList = () => {
         queryKey: ['users'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/wishlist', {
+                const res = await fetch('https://sell-dao-server.vercel.app/wishlist', {
                     headers: {
                         'authorization': `token ${localStorage.getItem('quicksellToken')}`
                     }
@@ -38,7 +38,7 @@ const MyWishList = () => {
 
         const confirm = window.confirm('Went to Remove This Item')
         if (confirm) {
-            const url = `http://localhost:5000/wishlist/${id}`
+            const url = `https://sell-dao-server.vercel.app/wishlist/${id}`
             fetch(url, {
                 method: 'DELETE',
                 headers: {

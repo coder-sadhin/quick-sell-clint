@@ -1,6 +1,6 @@
-const brandHomeApi = 'http://localhost:5000/brands/home'
+const brandHomeApi = 'https://sell-dao-server.vercel.app/brands/home'
 
-const brandApi = 'http://localhost:5000/brands'
+const brandApi = 'https://sell-dao-server.vercel.app/brands'
 
 
 

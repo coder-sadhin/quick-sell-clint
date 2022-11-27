@@ -1,6 +1,6 @@
 
 const addUser = (user) => {
-    fetch('http://localhost:5000/addUsers', {
+    fetch('https://sell-dao-server.vercel.app/addUsers', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

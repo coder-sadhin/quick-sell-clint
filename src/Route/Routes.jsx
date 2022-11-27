@@ -4,7 +4,6 @@ import DashBoard from "../DashBoard/DashBoard/DashBoard";
 import ReportedItem from "../DashBoard/Admin/ReportedItem/ReportedItem";
 import DashBoardLayout from "../Layout/DashBoardLayout";
 import MainLayout from '../Layout/MainLayout';
-import About from "../Pages/About/About";
 import Blogs from "../Pages/Blogs/Blogs";
 import Brand from "../Pages/Brands/Brand/Brand";
 import Brands from "../Pages/Brands/Brands/Brands";
@@ -22,6 +21,9 @@ import ProductBooking from "../Pages/Brands/Booking/ProductBooking";
 import MyOrders from "../DashBoard/DashBoard/MyOrders";
 import MyWishList from "../DashBoard/DashBoard/MyWishList";
 import AllSeller from "../DashBoard/Admin/AllSeller/AllSeller";
+import SoldProduct from "../DashBoard/Seller/SoldProduct/SoldProduct";
+import AdvertiseProduct from "../DashBoard/Admin/AdvertiseProduct/AdvertiseProduct";
+import Payment from "../DashBoard/DashBoard/Payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -42,23 +44,19 @@ const router = createBrowserRouter([
             },
             {
                 path: '/brands/:brandName',
-                loader: ({ params }) => fetch(`http://localhost:5000/brand/${params.brandName}`),
+                loader: ({ params }) => fetch(`https://sell-dao-server.vercel.app/brand/${params.brandName}`),
                 element: <PrivateRoute><Brand /></PrivateRoute>
             },
             {
                 path: '/details/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`),
+                loader: ({ params }) => fetch(`https://sell-dao-server.vercel.app/details/${params.id}`),
                 element: <PrivateRoute><DetailsPage /></PrivateRoute>
             },
             {
                 path: '/booking/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`),
+                loader: ({ params }) => fetch(`https://sell-dao-server.vercel.app/details/${params.id}`),
                 element: <ProductBooking />
 
-            },
-            {
-                path: '/about',
-                element: <About />
             },
             {
                 path: '/login',
@@ -111,8 +109,21 @@ const router = createBrowserRouter([
                 element: <MyProduct />
             },
             {
+                path: '/dashboard/soldProducts',
+                element: <SoldProduct />
+            },
+            {
                 path: '/dashboard/allProducts',
                 element: <AllProducts />
+            },
+            {
+                path: '/dashboard/advertiseP',
+                element: <AdvertiseProduct />
+            },
+            {
+                path: '/dashboard/payment/:id',
+                loader: ({ params }) => fetch(`https://sell-dao-server.vercel.app/payment/${params.id}`),
+                element: <Payment />
             }
 
         ]

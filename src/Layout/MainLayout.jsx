@@ -5,9 +5,13 @@ import Header from '../Pages/Shared/Header/Header';
 
 const MainLayout = () => {
     return (
-        <div className='w-11/12 mx-auto'>
+        <div>
             <Header />
-            <Outlet />
+            <div className='max-w-[1440px] mx-auto'>
+                <div className='w-11/12 mx-auto'>
+                    <Outlet />
+                </div>
+            </div>
             <Footer />
         </div>
     );

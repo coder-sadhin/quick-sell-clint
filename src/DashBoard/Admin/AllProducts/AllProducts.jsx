@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
 
 const AllProducts = () => {
-
-    const { data: products = [] } = useQuery({
+    const [loading, setLoading] = useState(false);
+    const { data: products = [], refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/allProduct', {
+                const res = await fetch('https://sell-dao-server.vercel.app/allProduct', {
                     headers: {
                         'authorization': `token ${localStorage.getItem('quicksellToken')}`
                     }
@@ -22,12 +23,35 @@ const AllProducts = () => {
         }
     })
 
+    const handleToDeleteProduct = (_id) => {
+        setLoading(true)
+        const confirm = window.confirm('Went to Delete This User')
+        if (confirm) {
+            console.log(confirm)
+            const url = `https://sell-dao-server.vercel.app/myProducts?id=${_id}`;
+            fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('quicksellToken')}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data)
+                    if (data.deletedCount > 0) {
+                        toast.success('Delete successfully')
+                        refetch()
+                    }
+                })
+        }
+        setLoading(false)
+    }
 
 
 
 
     return (
-        <div className='w-11/12 mx-auto'>
+        <div className='w-11/12 mx-auto my-5'>
             <div className='my-5'>
                 <h3 className="text-4xl font-bold text-center">All Products</h3>
             </div>
@@ -37,10 +61,10 @@ const AllProducts = () => {
                         <tr>
                             <th>
                             </th>
-                            <th>Mobile</th>
-                            <th>Brand</th>
+                            <th>Product Name</th>
                             <th>Price</th>
-                            <th>Location</th>
+                            <th>Condition</th>
+                            <th>Details</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -54,19 +78,9 @@ const AllProducts = () => {
                                             {i + 1}
                                         </label>
                                     </th>
-                                    <td className='flex items-center'>
-                                        <div className="flex items-center space-x-3">
-                                            <div className="avatar">
-                                                <div className="mask mask-squircle w-12 h-12">
-                                                    <img src={product.photoURL} alt="user" />
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </td>
                                     <td>
                                         <div>
-                                            <div className="font-bold">{product.brand}</div>
+                                            <div className="font-bold">{product.productName}</div>
                                             {/* <div className="text-sm opacity-50">United States</div> */}
                                         </div>
                                     </td>
@@ -77,6 +91,11 @@ const AllProducts = () => {
                                         <Link to={`/details/${product._id}`}>
                                             <PrimaryButton classes={'btn btn-sm'}>Details</PrimaryButton>
                                         </Link>
+                                    </th>
+                                    <th>
+                                        <th>
+                                            <PrimaryButton classes={'btn btn-sm'} handler={() => handleToDeleteProduct(product._id)}>{loading ? <SmallSpinner /> : 'Delete'}</PrimaryButton>
+                                        </th>
                                     </th>
                                 </tr>
                             )

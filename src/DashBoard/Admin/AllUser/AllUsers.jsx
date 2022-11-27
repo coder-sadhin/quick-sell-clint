@@ -10,7 +10,7 @@ const AllUsers = () => {
         queryKey: ['users'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/allUser', {
+                const res = await fetch('https://sell-dao-server.vercel.app/allUser', {
                     headers: {
                         'authorization': `token ${localStorage.getItem('quicksellToken')}`
                     }
@@ -31,17 +31,16 @@ const AllUsers = () => {
     const handleToDeleteUser = (id) => {
         const confirm = window.confirm('Went to Delete This User')
         if (confirm) {
-            const url = `https://localhost:5000/users/${id}`
+            const url = `https://sell-dao-server.vercel.app/user?id=${id}`
             fetch(url, {
                 method: 'DELETE',
                 headers: {
-
                     'authorization': `token ${localStorage.getItem('quicksellToken')}`
                 }
             })
                 .then(res => res.json())
                 .then(data => {
-                    if (data.modifiedCount > 0) {
+                    if (data.deletedCount > 0) {
                         toast.success('Delete successfully')
                         refetch()
                     }

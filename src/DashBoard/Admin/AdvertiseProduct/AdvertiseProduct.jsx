@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import toast from 'react-hot-toast';
+import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
 import NoData from '../../../Pages/NoData/NoData';
 
-const ReportedItem = () => {
+const AdvertiseProduct = () => {
+    const [loading, setLoading] = useState(false);
     const { data: products = [], refetch } = useQuery({
-        queryKey: ['users'],
+        queryKey: ['products'],
         queryFn: async () => {
             try {
-                const res = await fetch('https://sell-dao-server.vercel.app/reported', {
+                const res = await fetch('https://sell-dao-server.vercel.app/allAdvertise', {
                     headers: {
                         'authorization': `token ${localStorage.getItem('quicksellToken')}`
                     }
@@ -20,37 +22,41 @@ const ReportedItem = () => {
             catch (err) { }
         }
     })
+    console.log(products)
 
-    const handleToDeleteProduct = (id, productId) => {
-        const info = { id, productId };
-        const confirm = window.confirm('Went to Delete This Product')
+
+    const handleToDeleteProduct = (_id) => {
+        setLoading(true)
+        const confirm = window.confirm('Went to remove This Item')
         if (confirm) {
-            fetch('https://localhost:5000/reportItem', {
+            console.log(confirm)
+            const url = `https://sell-dao-server.vercel.app/advertise?id=${_id}`;
+            fetch(url, {
                 method: 'DELETE',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'authorization': `token ${localStorage.getItem('quicksellToken')}`
-                },
-                body: JSON.stringify(info)
+                    authorization: `bearer ${localStorage.getItem('quicksellToken')}`
+                }
             })
                 .then(res => res.json())
                 .then(data => {
-                    if (data.modifiedCount > 0) {
-                        toast.success('Delete successfully')
+                    // console.log(data)
+                    if (data.deletedCount > 0) {
+                        toast.success('Remove success')
                         refetch()
                     }
                 })
         }
+        setLoading(false)
     }
-
 
     return (
         <div className='w-11/12 mx-auto'>
             {
                 products.length > 0 ?
                     <>
+
                         <div className='my-5'>
-                            <h3 className="text-4xl font-bold text-center">Reported Items</h3>
+                            <h3 className="text-4xl font-bold text-center">Advertise Product</h3>
                         </div>
                         <div className="overflow-x-auto w-full">
                             <table className="table w-full">
@@ -58,10 +64,10 @@ const ReportedItem = () => {
                                     <tr>
                                         <th>
                                         </th>
-                                        <th>Image</th>
+                                        <th>Mobile</th>
                                         <th>Brand</th>
-                                        <th>Seller Email</th>
-                                        <th>Roll</th>
+                                        <th>Price</th>
+                                        <th>Condition</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -75,26 +81,20 @@ const ReportedItem = () => {
                                                         {i + 1}
                                                     </label>
                                                 </th>
-                                                <td className='flex items-center'>
-                                                    <div className="flex items-center space-x-3">
-                                                        <div className="avatar">
-                                                            <div className="mask mask-squircle w-12 h-12">
-                                                                <img src={product.photoURL} alt="user" />
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </td>
                                                 <td>
                                                     <div>
-                                                        <div className="font-bold">{product.brand}</div>
+                                                        <div className="font-bold">{product.productName}</div>
                                                         {/* <div className="text-sm opacity-50">United States</div> */}
                                                     </div>
                                                 </td>
-                                                <td>{product.sellerEmail}</td>
-                                                <td>{product.location} </td>
+                                                <td>{product.brand}</td>
+                                                <td>{product.price}</td>
+                                                <td>{product.condition}</td>
+
                                                 <th>
-                                                    <PrimaryButton classes={'btn-sm'} handler={() => handleToDeleteProduct(product._id, product.productId)}>Delete</PrimaryButton>
+                                                    <th>
+                                                        <PrimaryButton classes={'btn btn-sm'} handler={() => handleToDeleteProduct(product._id)}>{loading ? <SmallSpinner /> : 'Remove'}</PrimaryButton>
+                                                    </th>
                                                 </th>
                                             </tr>
                                         )
@@ -103,12 +103,12 @@ const ReportedItem = () => {
                             </table>
                         </div>
                     </> :
-                    <div className='w-11/12 mx-auto my-5'>
-                        <NoData>No Report</NoData>
+                    <div className='mt-5 mx-auto'>
+                        <NoData>No Product On Advertise</NoData>
                     </div>
             }
         </div>
     );
 };
 
-export default ReportedItem;
+export default AdvertiseProduct;

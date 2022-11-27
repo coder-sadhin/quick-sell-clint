@@ -1,7 +1,7 @@
 export const setAuthToken = userData => {
 
     //   Save user in db & get token
-    fetch('http://localhost:5000/user/jwt', {
+    fetch('https://sell-dao-server.vercel.app/user/jwt', {
         method: 'POST',
         headers: {
             'content-type': 'application/json',

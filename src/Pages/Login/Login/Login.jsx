@@ -34,7 +34,7 @@ const Login = () => {
     }
 
     const checkUserType = (email) => {
-        const url = `http://localhost:5000/checkuser/type?email=${email}`
+        const url = `https://sell-dao-server.vercel.app/checkuser/type?email=${email}`
         console.log(email, url)
         fetch(url)
             .then(res => res.json())

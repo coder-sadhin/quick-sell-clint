@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import ProductBooking from '../Booking/ProductBooking';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const SingleProduct = ({ product }) => {
     const { photoURL, price, brand, condition, _id, sellerEmail } = product;
     const [openModal, setOpenModal] = useState(false);
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
-    const { data: seller = '' } = useQuery({
+    const { data: seller = `''` } = useQuery({
         queryKey: ['seller'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/sellerVerify?email=${sellerEmail}`, {
+                const res = await fetch(`https://sell-dao-server.vercel.app/sellerVerify?email=${sellerEmail}`, {
                     headers: {
                         'authorization': `token ${localStorage.getItem('quicksellToken')}`
                     }
@@ -30,6 +33,12 @@ const SingleProduct = ({ product }) => {
         toast.error('This Product Already Booked')
     }
     const handleToModal = () => {
+        if (!user) {
+            const confirm = window.confirm('You are not login, Go To Login Page')
+            if (confirm) {
+                navigate('/login')
+            }
+        }
         setOpenModal(true)
     }
 
@@ -46,7 +55,7 @@ const SingleProduct = ({ product }) => {
                         </div>
                         <div className='w-14'>
                             {
-                                seller === "verify" && <img src="https://i.ibb.co/mJwB4QT/6874364-removebg-preview.png" alt="" />
+                                seller && seller === "verify" && <img src="https://i.ibb.co/mJwB4QT/6874364-removebg-preview.png" alt="" />
                             }
                         </div>
                     </div>

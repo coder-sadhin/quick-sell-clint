@@ -23,7 +23,7 @@ const AddProduct = () => {
     const { data: districts = [], isLoading, error } = useQuery({
         queryKey: ['specialty'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/geoLocation');
+            const res = await fetch('https://sell-dao-server.vercel.app/geoLocation');
             const data = res.json();
             return data
         }
@@ -32,7 +32,7 @@ const AddProduct = () => {
     // this is for geo location 
 
     useEffect(() => {
-        fetch('http://localhost:5000/brands')
+        fetch('https://sell-dao-server.vercel.app/brands')
             .then(res => res.json())
             .then(data => {
                 setBrands(data)
@@ -93,7 +93,7 @@ const AddProduct = () => {
 
     const setDoctorToDB = (productInfo) => {
 
-        fetch('http://localhost:5000/product', {
+        fetch('https://sell-dao-server.vercel.app/product', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -243,7 +243,7 @@ const AddProduct = () => {
                             type='submit'
                             classes='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
                         >
-                            {loading ? <SmallSpinner /> : 'Register'}
+                            {loading ? <SmallSpinner /> : 'ADD PRODUCT'}
                         </PrimaryButton>
                     </div>
                 </form>

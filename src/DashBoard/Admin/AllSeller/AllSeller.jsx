@@ -10,7 +10,7 @@ const AllSeller = () => {
         queryKey: ['users'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/allSeller', {
+                const res = await fetch('https://sell-dao-server.vercel.app/allSeller', {
                     headers: {
                         'authorization': `token ${localStorage.getItem('quicksellToken')}`
                     }
@@ -31,7 +31,7 @@ const AllSeller = () => {
     const handleToVerify = (id) => {
         const confirm = window.confirm('Do You Went To Verify This Seller')
         if (confirm) {
-            fetch(`http://localhost:5000/sellerVerify/${id}`, {
+            fetch(`https://sell-dao-server.vercel.app/sellerVerify/${id}`, {
                 method: 'PUT',
                 headers: {
                     'authorization': `token ${localStorage.getItem('quicksellToken')}`

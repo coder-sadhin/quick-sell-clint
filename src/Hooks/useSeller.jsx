@@ -6,7 +6,7 @@ const useSeller = email => {
     const [userLoading, setUserLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/checkuser/type?email=${email}`)
+            fetch(`https://sell-dao-server.vercel.app/checkuser/type?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data === "seller") {

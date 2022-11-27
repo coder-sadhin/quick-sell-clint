@@ -22,14 +22,14 @@ const DashBoardLayout = () => {
     return (
         <div>
             <Header />
-            <div className="drawer drawer-mobile">
+            <div className="drawer drawer-mobile max-w-[1440px]">
                 <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     <Outlet />
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 text-base-content bg-slate-500">
+                    <ul className="menu p-4 w-80 text-bold bg-blue-200">
 
 
                         <li><Link to={'/dashboard/myOrders'}>My Orders</Link></li>
@@ -40,6 +40,7 @@ const DashBoardLayout = () => {
                         {
                             isSeller && <>
                                 <li><Link to={'/dashboard/myProducts'}>My Products</Link></li>
+                                <li><Link to={'/dashboard/soldProducts'}>Sold Products</Link></li>
                                 <li><Link to={'/dashboard/addProduct'}>Add Product</Link></li>
                                 <li><Link to={'/dashboard/myBuyer'}>My Buyers</Link></li>
                             </>
@@ -47,6 +48,7 @@ const DashBoardLayout = () => {
                         {
                             isAdmin && <>
                                 <li><Link to={'/dashboard/allProducts'}>All Products</Link></li>
+                                <li><Link to={'/dashboard/advertiseP'}>Advertise Product</Link></li>
                                 <li><Link to={'/dashboard/allUsers'}>All Users</Link></li>
                                 <li><Link to={'/dashboard/allSeller'}>All Seller</Link></li>
                                 <li><Link to={'/dashboard/reportItem'}>Reported Items</Link></li>

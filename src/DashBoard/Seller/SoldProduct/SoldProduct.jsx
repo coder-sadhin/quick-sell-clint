@@ -1,20 +1,20 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import NoData from '../../Pages/NoData/NoData';
-import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import PrimaryButton from '../../../Components/Button/PrimaryButton';
+import SmallSpinner from '../../../Components/Spinner/SmallSpinner';
+import NoData from '../../../Pages/NoData/NoData';
 
 
-const MyOrders = () => {
-    const navigate = useNavigate();
-    const { user } = useContext(AuthContext);
+const SoldProduct = () => {
 
-    const { data: orders = [], refetch } = useQuery({
-        queryKey: ['users'],
+    const [loading, setLoading] = useState(false);
+
+    const { data: products = [], refetch } = useQuery({
+        queryKey: ['products'],
         queryFn: async () => {
             try {
-                const res = await fetch('https://sell-dao-server.vercel.app/booking', {
+                const res = await fetch('https://sell-dao-server.vercel.app/soldProducts', {
                     headers: {
                         'authorization': `token ${localStorage.getItem('quicksellToken')}`
                     }
@@ -25,25 +25,16 @@ const MyOrders = () => {
             catch (err) { }
         }
     })
+    // console.log(products)
 
-    const handleToPay = (id) => {
-        if (!user) {
-            const confirm = window.confirm('You are not login, Go To Login Page')
-            if (confirm) {
-                navigate('/login')
-                toast.error('GO To Login Page')
-            }
-        }
-        navigate(`/dashboard/payment/${id}`)
-    }
     return (
         <div>
             {
-                orders.length > 0 ?
+                products.length > 0 ?
                     <>
                         <div className='w-11/12 mx-auto'>
                             <div className='my-5'>
-                                <h3 className="text-4xl font-bold text-center">All Orders</h3>
+                                <h3 className="text-4xl font-bold text-center">All Posted Product</h3>
                             </div>
                             <div className="overflow-x-auto w-full">
                                 <table className="table w-full">
@@ -52,17 +43,17 @@ const MyOrders = () => {
                                             <th>
                                             </th>
                                             <th>Image</th>
-                                            <th>Brand</th>
-                                            <th>price</th>
-                                            <th>Seller Email</th>
-                                            <th>Paid</th>
+                                            <th>Brand Name</th>
+                                            <th>Price</th>
+                                            <th>Advice</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         {
-                                            orders.map((order, i) =>
-                                                <tr key={i}>
+                                            products.map((product, i) =>
+                                                <tr key={product._id}>
                                                     <th>
                                                         <label>
                                                             {i + 1}
@@ -72,7 +63,7 @@ const MyOrders = () => {
                                                         <div className="flex items-center space-x-3">
                                                             <div className="avatar">
                                                                 <div className="mask mask-squircle w-12 h-12">
-                                                                    <img src={order.photoURL} alt="user" />
+                                                                    <img src={product.photoURL} alt="user" />
                                                                 </div>
                                                             </div>
 
@@ -80,16 +71,12 @@ const MyOrders = () => {
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <div className="font-bold">{order.brand}</div>
+                                                            <div className="font-bold">{product.brand}</div>
                                                             {/* <div className="text-sm opacity-50">United States</div> */}
                                                         </div>
                                                     </td>
-                                                    <td>{order.price}</td>
-                                                    <td>{order.sellerEmail}</td>
+                                                    <td>${product.price}</td>
 
-                                                    <th>
-                                                        <button onClick={() => handleToPay(order.productId)} className='hover:text-orange-500 btn-sm btn bg-gradient-to-r from-primary to-secondary text-white' disabled={(order.paying === 'paid' ? true : false)} >{order.paying === 'paid' ? 'Paid' : 'Pay'}</button>
-                                                    </th>
                                                 </tr>
                                             )
                                         }
@@ -97,14 +84,13 @@ const MyOrders = () => {
                                 </table>
                             </div>
                         </div>
-                    </>
-                    :
-                    <div className='w-11/12 mx-auto mt-5'>
-                        <NoData>YOUE HAVE NO ORDER</NoData>
+                    </> :
+                    <div className='w-11/12 mt-5 mx-auto'>
+                        <NoData>No Product Sold</NoData>
                     </div>
             }
         </div>
     );
 };
 
-export default MyOrders;
+export default SoldProduct;
