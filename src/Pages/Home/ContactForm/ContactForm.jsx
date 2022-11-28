@@ -15,7 +15,7 @@ const ContactForm = () => {
                         <h1 className="text-lg text-primary text-center font-bold">Contact Us</h1>
                         <p className="text-4xl font-bold text-white">Stay connected with us</p>
                     </div>
-                    <div className="card w-96">
+                    <div className="card w-11/12">
                         <div className="card-body">
                             <div className="form-control">
                                 <input type="text" placeholder="Name" className="input input-bordered" />

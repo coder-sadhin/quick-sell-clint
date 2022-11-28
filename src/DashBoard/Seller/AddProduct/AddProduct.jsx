@@ -18,7 +18,7 @@ const AddProduct = () => {
     const { user } = useContext(AuthContext);
 
     const { register, formState: { errors }, handleSubmit } = useForm();
-
+    console.error(errors)
     const navigate = useNavigate();
 
 
@@ -30,7 +30,7 @@ const AddProduct = () => {
             return data
         }
     })
-
+    console.error(error)
     // this is for geo location 
 
     useEffect(() => {

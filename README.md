@@ -1,70 +1,22 @@
-# Getting Started with Create React App
+# Welcome To Quick SEll GITHUB
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Here CODE and Live Site Link
 
-## Available Scripts
+* Live Site Link [Quick Sell](http://sell-old-phone-c422d.web.app).
 
-In the project directory, you can run:
+* Clint Site Code Link [Quick Sell Clint](https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-coder-sadhin).
 
-### `npm start`
+* Server Site Code Link [Quick Sell Server](https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-coder-sadhin).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Site Features Explanation
 
-### `npm test`
+* A user without login , only see home page and blogs page. when user click advertise section or brand section alart he not login, and rediract login page. When login any on, before success login check user type , and show spacific item for this user can do. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* seller add a product , than show my product, there two btn, one advertise(when book any buyer it show booked, and when complete paying, show PAid), and delete option.first-letter:
 
-### `npm run build`
+* seller see his all buyer also, and product advertise, when user, book any product , show this product booked, and hide from advertise page, and when payment complete, hide from site.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Admin control all user, all seller , verify seller, delete product, delete advertise product, and any user and seller oslo. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* if user delete a seller, also delete this buyer all docoment from site and data base.
