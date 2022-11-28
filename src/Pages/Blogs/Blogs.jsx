@@ -9,7 +9,7 @@ const Blogs = () => {
         queryKey: ['blogs'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/blogs`, {
+                const res = await fetch(`https://sell-dao-server.vercel.app/blogs`, {
                     headers: {
                         'authorization': `token ${localStorage.getItem('quicksellToken')}`
                     }

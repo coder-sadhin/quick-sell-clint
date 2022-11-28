@@ -102,7 +102,7 @@ const Register = () => {
 
     return (
         <div className='flex justify-center items-center py-5'>
-            <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-200 text-gray-900'>
+            <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-blue-200 text-gray-900'>
                 <div className='mb-8 text-center'>
                     <h1 className='text-4xl font-bold'>Please Register Here</h1>
                     <p className='text-sm text-gray-400'>Create a new account</p>
@@ -113,7 +113,7 @@ const Register = () => {
                             <label htmlFor='email' className='block mb-2 text-sm'>
                                 Name
                             </label>
-                            <input type='text' name='name' id='name' placeholder='Enter Your Name Here' className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900'
+                            <input type='text' name='name' id='name' placeholder='Enter Your Name Here' className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-blue-200 text-gray-900'
                             />
                         </div>
                         <div>
@@ -128,7 +128,7 @@ const Register = () => {
                                 Email address
                             </label>
                             <input type='email' name='email' id='email' required placeholder='Enter Your Email Here'
-                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900'
+                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-blue-200 text-gray-900'
 
                             />
                         </div>
@@ -139,7 +139,7 @@ const Register = () => {
                                 </label>
                             </div>
                             <input type='password' name='password' id='password' required placeholder='*******'
-                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900'
+                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-blue-200 text-gray-900'
                             />
                         </div>
                         <div>
@@ -149,7 +149,7 @@ const Register = () => {
                                 </label>
                             </div>
                             <div>
-                                <select defaultValue={''} name='userRoll' className="select w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900">
+                                <select defaultValue={''} name='userRoll' className="select w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-blue-200 text-gray-900">
                                     <option value={'user'} disabled selected>What type user you are?</option>
                                     <option value={'user'}>User</option>
                                     <option value={'seller'}>Seller</option>

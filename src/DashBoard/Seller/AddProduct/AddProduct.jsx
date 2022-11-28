@@ -118,7 +118,7 @@ const AddProduct = () => {
     }
     return (
         <div className='flex justify-center items-center py-5 '>
-            <div className='flex flex-col w-11/12  p-6 rounded-md sm:p-10 bg-gray-200 text-gray-900'>
+            <div className='flex flex-col w-11/12  p-6 rounded-md sm:p-10 bg-blue-200 text-gray-900'>
                 <div className='mb-5 text-center'>
                     <h1 className='text-4xl font-bold'>Add Your Product</h1>
                 </div>
@@ -129,7 +129,7 @@ const AddProduct = () => {
                                 <label className="label">
                                     <span className="label-text font-bold">Product Name</span>
                                 </label>
-                                <input type="text" className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900' {...register("productName", {
+                                <input type="text" className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-blue-200 text-gray-900' {...register("productName", {
                                     required: "Product Name is required"
                                 })} />
 
@@ -139,7 +139,7 @@ const AddProduct = () => {
                                     <span className="label-text font-bold">Price</span>
                                 </label>
                                 <input type="number"
-                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900' {...register("price", {
+                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-blue-200 text-gray-900' {...register("price", {
                                         required: "Product Price is required"
                                     })} />
                             </div>
@@ -150,7 +150,7 @@ const AddProduct = () => {
                                     <span className="label-text font-bold">Product Condition</span>
                                 </label>
                                 <select defaultValue={''} name='userRoll'
-                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900' {...register("condition", {
+                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-blue-200 text-gray-900' {...register("condition", {
                                         required: "Product Condition is required"
                                     })}>
                                     <option value={''} disabled selected>Product Condition</option>
@@ -165,7 +165,7 @@ const AddProduct = () => {
                                     <span className="label-text font-bold">Seller Location</span>
                                 </label>
                                 <select defaultValue={''} name='userRoll'
-                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900' {...register("location", {
+                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-blue-200 text-gray-900' {...register("location", {
                                         required: "Location is required"
                                     })}>
                                     <option value={''} disabled selected>Select Your Location</option>
@@ -185,7 +185,7 @@ const AddProduct = () => {
                                     <span className="label-text font-bold">Brand</span>
                                 </label>
                                 <select defaultValue={''} name='userRoll'
-                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900' {...register("brand", {
+                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-blue-200 text-gray-900' {...register("brand", {
                                         required: "Brand is required"
                                     })}>
                                     <option value={''} disabled selected>Brand Name</option>
@@ -203,7 +203,7 @@ const AddProduct = () => {
                                     <span className="label-text font-bold">Buying Year</span>
                                 </label>
                                 <input type="number"
-                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900' {...register("buying", {
+                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-blue-200 text-gray-900' {...register("buying", {
                                         required: "Buying Year is required"
                                     })} />
                             </div>
@@ -214,7 +214,7 @@ const AddProduct = () => {
                                     <span className="label-text font-bold">Product Image</span>
                                 </label>
                                 <input
-                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900' {...register("image", {
+                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-blue-200 text-gray-900' {...register("image", {
                                         required: "Image is required"
                                     })}
                                     required type='file' id='image' name='image' accept='image/*'
@@ -226,7 +226,7 @@ const AddProduct = () => {
                                     <span className="label-text font-bold">Mobile Number</span>
                                 </label>
                                 <input type="number"
-                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900' {...register("mobile", {
+                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-blue-200 text-gray-900' {...register("mobile", {
                                         required: "Number is required"
                                     })} />
                             </div>
@@ -235,7 +235,7 @@ const AddProduct = () => {
                             <label className="label">
                                 <span className="label-text font-bold">Sort Description</span>
                             </label>
-                            <textarea className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900' {...register("description", {
+                            <textarea className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-blue-200 text-gray-900' {...register("description", {
                                 required: "description is required"
                             })}></textarea>
                         </div>

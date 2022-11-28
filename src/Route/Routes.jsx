@@ -24,11 +24,13 @@ import AllSeller from "../DashBoard/Admin/AllSeller/AllSeller";
 import AdvertiseProduct from "../DashBoard/Admin/AdvertiseProduct/AdvertiseProduct";
 import Payment from "../DashBoard/DashBoard/Payment/Payment";
 import AdminRoute from "./AdminRoute/AdminRoute";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',

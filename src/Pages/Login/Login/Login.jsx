@@ -82,7 +82,7 @@ const Login = () => {
 
     return (
         <div className='flex justify-center items-center py-5'>
-            <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-200 text-gray-900'>
+            <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-blue-200 text-gray-900'>
                 <div className='mb-8 text-center'>
                     <h1 className='text-4xl font-bold'>Please Sign In</h1>
                     <p className='text-sm text-gray-400'>
@@ -101,7 +101,7 @@ const Login = () => {
                                 Email address
                             </label>
                             <input onBlur={event => setUserEmail(event.target.value)} type='email' name='email' id='email' required placeholder='Enter Your Email Here'
-                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900'
+                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-blue-200 text-gray-900'
 
                             />
                         </div>
@@ -112,7 +112,7 @@ const Login = () => {
                                 </label>
                             </div>
                             <input type='password' name='password' id='password' required placeholder='*******'
-                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900'
+                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-blue-200 text-gray-900'
                             />
                         </div>
                     </div>
